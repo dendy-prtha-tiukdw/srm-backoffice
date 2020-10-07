@@ -6,37 +6,47 @@
         icon="fas fa-edit"
         @click="handleClickLogin"
         :disabled="!isInit"
-      >get authCode</button>
+      >
+        get authCode
+      </button>
       <button
         type="primary"
         icon="fas fa-edit"
         @click="handleClickSignIn"
         v-if="!isSignIn"
         :disabled="!isInit"
-      >sign in</button>
+      >
+        sign in
+      </button>
       <button
         type="primary"
         icon="fas fa-edit"
         @click="handleClickSignOut"
         v-if="isSignIn"
         :disabled="!isInit"
-      >sign out</button>
+      >
+        sign out
+      </button>
       <button
         type="primary"
         icon="fas fa-edit"
         @click="handleClickDisconnect"
         :disabled="!isInit"
-      >disconnect</button>
+      >
+        disconnect
+      </button>
       <i class="fas fa-edit"></i>
-      <p>isInit: {{isInit}}</p>
-      <p>isSignIn: {{isSignIn}}</p>
+      <p>isInit: {{ isInit }}</p>
+      <p>isSignIn: {{ isSignIn }}</p>
 
       <button
         type="primary"
         icon="fas fa-edit"
         @click="handleClickUpdateScope"
         :disabled="!isInit"
-      >update scope</button>
+      >
+        update scope
+      </button>
       <button @click="getData">SignIn</button>
     </div>
   </div>
