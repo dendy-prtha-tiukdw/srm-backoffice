@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Article">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/client/platform.js?onload=start" async defer></script> 
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="google-signin-client_id" content="527371133243-9tr4gvi7vic5g3b3p5fr10dtrgs4kvgo.apps.googleusercontent.com">
+    <meta name="google-signin-scope" content="https://www.googleapis.com/auth/plus.login" />
+    <meta name="google-signin-requestvisibleactions" content="http://schemas.google.com/AddActivity" />
+    <meta name="google-signin-cookiepolicy" content="single_host_origin" />
+    <meta name="google-signin-callback" content="signInCallback" />
+
+    <title>Login</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Dark.css">
+
+    <script>
+        function start() {
+            gapi.load('auth2', function() {
+                auth2 = gapi.auth2.init({
+                    client_id: '527371133243-9tr4gvi7vic5g3b3p5fr10dtrgs4kvgo.apps.googleusercontent.com',
+                    scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/drive.appdata openid https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/userinfo.profile',
+                });
+            });
+        }
+
+        function signInCallBack(authResult) {
+            var auth_code = authResult.code;
+
+            if (authResult['code']) {
+                 // Send the code to the server
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://example.com/storeauthcode',
+                    // Always include an `X-Requested-With` header in every AJAX request,
+                    // to protect against CSRF attacks.
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    contentType: 'application/octet-stream; charset=utf-8',
+                    success: function(result) {
+                        // Handle or verify the server response.
+                        console.log("Result: ", JSON.stringify(authResult.code));
+                    },
+                    processData: false,
+                    data: authResult['code']
+                });
+                window.location.href = "class-list.html";              
+            } else {
+                // There was an error.
+                console.error("failed to authentication")
+            }
+            console.log(auth_code)
+        }
+              
+        // function signInCallBack() {
+        //     return new Promise((resolve, reject) => {
+        //         if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
+        //             console.log("punten")
+        //             console.log(gapi.auth2
+        //             .getAuthInstance()
+        //             .currentUser.get()
+        //             .grantOfflineAccess({
+        //                 prompt: "consent", 
+        //                 scope: "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email",   
+        //             }))
+        //             .then(response => {
+        //                 if (response && response.code) {
+        //                     console.log("Result: ", JSON.stringify(responses.code));
+        //                     return resolve(response.code);
+        //                 }
+        //                 return reject(Error("no offline access code"));
+        //             })
+        //         }
+        //         return reject(Error("no user"));
+        //     })
+        // }
+
+    </script>
+    
+</head>
+
+<body>
+    <div class="login-dark">
+        <h2 class="sr-only">Login Form</h2>
+        <div class="title">
+            <h1>SRM BackOffice</h1>
+        </div>
+        <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+        <div class="form-group">
+            <button class="btn btn-primary btn-block" type="submit">Log In</button>
+        </div> 
+
+        <!-- <div class="googlebutton">
+            <div class="g-signin2" data-width="238" data-height="45" data-longtitle="true" style="margin-bottom: 15px;" data-onsuccess="onSignIn"></div>
+        </div> -->
+        <div class="form-group">
+            <button class="btn btn-block gbtn" id="signinButton">
+                Sign In With Google
+            </button>
+            <script>
+                $('#signinButton').click(function(){
+                    auth2.grantOfflineAccess().then(signInCallBack);
+                })
+            </script>
+        </div>
+        <a class="forgot" href="#">Forgot your email or password?</a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <!-- <script src="assets/bootstrap/js/bootstrap.min.js"></script> -->
+    <!-- <script src="assets/js/login.js"></script> -->
+
+
+
+</body>
+
+</html>
