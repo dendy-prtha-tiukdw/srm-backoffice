@@ -2,10 +2,27 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import GAuth from "vue-google-oauth2";
 import "./registerServiceWorker";
+import { CHECK_AUTH } from "./store/actions.type";
+import ApiService from "./common/api.service";
+import DateFilter from "./common/date.filter";
+import ErrorFilter from "./common/error.filter";
+
+import GAuth from "vue-google-oauth2";
 import axios from "axios";
-//import GAuth from "./utils/GoogleAuth"
+/* eslint-disable no-console */
+
+Vue.config.productionTip = false;
+Vue.filter("date", DateFilter);
+Vue.filter("error", ErrorFilter);
+
+ApiService.init();
+
+// Ensure we checked auth before each page load.
+router.beforeEach((to, from, next) => {
+  Promise.all([store.dispatch(CHECK_AUTH)]).then(next);
+});
+
 Vue.prototype.$axios = axios;
 Vue.config.productionTip = false;
 Vue.use(GAuth, {
@@ -15,6 +32,7 @@ Vue.use(GAuth, {
     "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/drive.appdata https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/calendar",
   prompt: "consent"
 });
+
 new Vue({
   router,
   store,

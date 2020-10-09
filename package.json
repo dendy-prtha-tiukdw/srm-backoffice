@@ -1,5 +1,5 @@
 {
-  "name": "back-office",
+  "name": "SRM-Backoffice",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,19 +11,14 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
-    "body-parser": "^1.19.0",
-    "bootstrap": "^4.5.2",
-    "core-js": "^2.6.5",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "date-fns": "^1.30.1",
     "googleapis": "^61.0.0",
-    "query-string": "^6.13.5",
+    "marked": "^0.7.0",
     "register-service-worker": "^1.6.2",
-    "request": "^2.88.2",
-    "url-parse": "^1.4.7",
     "vue": "^2.6.10",
+    "vue-axios": "^2.1.4",
     "vue-google-oauth2": "^1.5.5",
-    "vue-router": "^3.0.3",
+    "vue-router": "^3.4.6",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
