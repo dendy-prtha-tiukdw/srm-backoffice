@@ -8,6 +8,26 @@ const NO_INDUK_KEY = "no_induk";
 const REFRESH_TOKEN_KEY = "refresh_token";
 const ROLE_KEY = "role";
 
+export const getName = () => {
+  return window.localStorage.getItem(NAME_KEY);
+};
+
+export const getRole = () => {
+  return window.localStorage.getItem(ROLE_KEY);
+};
+
+export const getEmail = () => {
+  return window.localStorage.getItem(EMAIL_KEY);
+};
+
+export const getImgUrl = () => {
+  return window.localStorage.getItem(IMAGE_URL_KEY);
+};
+
+export const getNoInduk = () => {
+  return window.localStorage.getItem(NO_INDUK_KEY);
+};
+
 export const getAccessToken = () => {
   return window.localStorage.getItem(ACCESS_TOKEN_KEY);
 };
@@ -67,6 +87,11 @@ export const destroyUserSession = () => {
 };
 
 export default {
+  getName,
+  getRole,
+  getEmail,
+  getImgUrl,
+  getNoInduk,
   getIdToken,
   saveIdToken,
   getAccessToken,

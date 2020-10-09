@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import ApiService from "@/common/api.service";
 import JwtService from "@/common/jwt.service";
+
 import {
   LOGIN,
   LOGOUT,
@@ -18,6 +19,16 @@ const state = {
 
 const getters = {
   currentUser(state) {
+    state.user = {
+      name: JwtService.getName(),
+      role: JwtService.getRole(),
+      email: JwtService.getEmail(),
+      imgUlr: JwtService.getImgUrl(),
+      noInduk: JwtService.getNoInduk(),
+      idToken: JwtService.getIdToken(),
+      accessToken: JwtService.getAccessToken(),
+      refreshToken: JwtService.getRefreshToken()
+    };
     return state.user;
   },
   isAuthenticated(state) {
@@ -63,7 +74,6 @@ const actions = {
   },
   [CHECK_AUTH](context) {
     if (JwtService.getAccessToken()) {
-      // console.log("Sudah login coi");
       // console.log(JwtService.getRefreshToken());
       // console.log(JwtService.getIdToken());
       // console.log(JwtService.getAccessToken());
@@ -104,13 +114,12 @@ const mutations = {
     state.errors = error;
   },
   [SET_AUTH](state, user) {
+    var parsedUser = JSON.parse(JSON.stringify(user));
     state.isAuthenticated = true;
-    state.user = user;
+    state.user = parsedUser;
     state.errors = {};
     console.log("FROM mutations SET_AUTH");
-    var parsedUser = JSON.parse(JSON.stringify(user));
     console.log(parsedUser);
-    console.log(parsedUser.data.accessToken);
     JwtService.saveUserSession(
       parsedUser.data.accessToken,
       parsedUser.data.idToken,

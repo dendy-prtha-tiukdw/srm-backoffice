@@ -10,6 +10,7 @@ import ErrorFilter from "./common/error.filter";
 
 import GAuth from "vue-google-oauth2";
 import axios from "axios";
+/* eslint-disable no-console */
 
 Vue.config.productionTip = false;
 Vue.filter("date", DateFilter);
@@ -18,9 +19,9 @@ Vue.filter("error", ErrorFilter);
 ApiService.init();
 
 // Ensure we checked auth before each page load.
-router.beforeEach((to, from, next) =>
-  Promise.all([store.dispatch(CHECK_AUTH)]).then(next)
-);
+router.beforeEach((to, from, next) => {
+  Promise.all([store.dispatch(CHECK_AUTH)]).then(next);
+});
 
 Vue.prototype.$axios = axios;
 Vue.config.productionTip = false;

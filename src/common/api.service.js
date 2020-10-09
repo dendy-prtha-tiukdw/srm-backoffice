@@ -3,13 +3,11 @@ import axios from "axios";
 import VueAxios from "vue-axios";
 import JwtService from "@/common/jwt.service";
 import { API_URL } from "@/common/config";
-
+/* eslint-disable no-console */
 const ApiService = {
   init() {
     Vue.use(VueAxios, axios);
     Vue.axios.defaults.baseURL = API_URL;
-    /* eslint-disable no-console */
-    console.log("ApiService init");
   },
 
   setHeader() {

@@ -20,9 +20,10 @@
 <script>
 import { mapState } from "vuex";
 import { LOGIN } from "@/store/actions.type";
+import JwtService from "@/common/jwt.service";
 /* eslint-disable no-console */
 export default {
-  name: "RwvLogin",
+  name: "Login",
   data() {
     return {
       gAuthReady: false,
@@ -30,11 +31,15 @@ export default {
       password: null
     };
   },
+  beforeMount() {
+    if (JwtService.getRefreshToken()) {
+      this.$router.push({ name: "home" });
+    }
+  },
   created() {
     let that = this;
     let checkGauthLoad = setInterval(function() {
       that.gAuthReady = that.$gAuth.isInit;
-      //that.isSignIn = that.$gAuth.isAuthorized;
       if (that.isInit) clearInterval(checkGauthLoad);
     }, 1000);
   },
@@ -55,7 +60,7 @@ export default {
   },
   computed: {
     ...mapState({
-      //errors: state => state.auth.errors
+      errors: state => state.auth.errors
     })
   }
 };

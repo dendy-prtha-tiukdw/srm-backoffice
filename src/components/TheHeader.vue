@@ -10,31 +10,11 @@
             class="nav-link"
             active-class="active"
             exact
-            :to="{ name: 'home' }"
-          >
-            Home
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link
-            class="nav-link"
-            active-class="active"
-            exact
             :to="{ name: 'login' }"
           >
             <i class="ion-compose"></i>Sign in
           </router-link>
         </li>
-        <!-- <li class="nav-item">
-          <router-link
-            class="nav-link"
-            active-class="active"
-            exact
-            :to="{ name: 'register' }"
-          >
-            <i class="ion-compose"></i>Sign up
-          </router-link>
-        </li> -->
       </ul>
       <ul v-else class="nav navbar-nav pull-xs-right">
         <li class="nav-item">
@@ -48,37 +28,28 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link
-            class="nav-link"
-            active-class="active"
-            :to="{ name: 'article-edit' }"
+          <button
+            class="btn btn-lg btn-primary pull-xs-center"
+            @click="handleLogOut"
           >
-            <i class="ion-compose"></i>&nbsp;New Article
-          </router-link>
+            <i class="ion-log-out"></i>
+            Logout
+          </button>
         </li>
-        <li class="nav-item">
-          <router-link
-            class="nav-link"
-            active-class="active"
-            exact
-            :to="{ name: 'settings' }"
-          >
-            <i class="ion-gear-a"></i>&nbsp;Logout
-          </router-link>
-        </li>
-        <li class="nav-item" v-if="currentUser.username">
+        <!-- 
+        <li class="nav-item" v-if="currentUser.name">
           <router-link
             class="nav-link"
             active-class="active"
             exact
             :to="{
               name: 'profile',
-              params: { username: currentUser.username }
+              params: { username: currentUser.name }
             }"
           >
-            {{ currentUser.username }}
-          </router-link>
-        </li>
+            {{ currentUser.name }}
+          </router-link> 
+        </li>-->
       </ul>
     </div>
   </nav>
@@ -86,9 +57,18 @@
 
 <script>
 import { mapGetters } from "vuex";
-
+import { LOGOUT } from "@/store/actions.type";
+/* eslint-disable no-console */
 export default {
   name: "RwvHeader",
+  methods: {
+    handleLogOut() {
+      console.log("LOGOUTTTTT");
+      this.$store
+        .dispatch(LOGOUT)
+        .then(() => this.$router.push({ name: "login" }));
+    }
+  },
   computed: {
     ...mapGetters(["currentUser", "isAuthenticated"])
   }
