@@ -1,6 +1,9 @@
 <template>
   <nav class="navbar navbar-light">
     <div class="container">
+      <ul v-if="isAuthenticated" class="nav navbar-nav pull-xs-left">
+        <Burger></Burger>
+      </ul>
       <router-link class="navbar-brand" :to="{ name: 'home' }">
         SRM Backoffice
       </router-link>
@@ -16,6 +19,7 @@
           </router-link>
         </li>
       </ul>
+
       <ul v-else class="nav navbar-nav pull-xs-right">
         <li class="nav-item">
           <router-link
@@ -50,6 +54,13 @@
             {{ currentUser.name }}
           </router-link> 
         </li>-->
+        <Sidebar>
+          <ul class="sidebar-panel-nav">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </Sidebar>
       </ul>
     </div>
   </nav>
@@ -58,9 +69,15 @@
 <script>
 import { mapGetters } from "vuex";
 import { LOGOUT } from "@/store/actions.type";
+import Sidebar from "@/components/menu/Sidebar.vue";
+import Burger from "@/components/menu/Burger.vue";
 /* eslint-disable no-console */
 export default {
   name: "RwvHeader",
+  components: {
+    Sidebar,
+    Burger
+  },
   methods: {
     handleLogOut() {
       console.log("LOGOUTTTTT");
