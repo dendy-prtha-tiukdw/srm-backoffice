@@ -16,6 +16,11 @@ export default new Router({
       path: "/login",
       name: "login",
       component: () => import("@/views/Login")
+    },
+    {
+      path: "/daftar-kelas",
+      name: "daftar-kelas",
+      component: () => import("@/views/DaftarKelas")
     }
   ]
 });

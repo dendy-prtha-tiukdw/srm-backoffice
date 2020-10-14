@@ -22,14 +22,6 @@
 
       <ul v-else class="nav navbar-nav pull-xs-right">
         <li class="nav-item">
-          <router-link
-            class="nav-link"
-            active-class="active"
-            exact
-            :to="{ name: 'home' }"
-          >
-            Home
-          </router-link>
         </li>
         <li class="nav-item">
           <button
@@ -56,9 +48,35 @@
         </li>-->
         <Sidebar>
           <ul class="sidebar-panel-nav">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li>
+              <router-link
+                class="nav-link"
+                active-class="active"
+                exact
+                :to="{ name: 'home' }"
+              >
+                Home
+              </router-link>
+            </li>
+            <li>              
+              <router-link
+                class="nav-link"
+                active-class="active"
+                exact
+                :to="{ name: 'daftar-kelas' }"
+              >
+                Daftar Kelas
+              </router-link>
+            </li>
+            <li>              
+              <router-link
+                class="nav-link"
+                active-class="active"
+                exact
+                :to="{ name: 'daftar-kelas' }"
+              >
+                Daftar Kelas
+              </router-link></li>
           </ul>
         </Sidebar>
       </ul>
@@ -71,6 +89,7 @@ import { mapGetters } from "vuex";
 import { LOGOUT } from "@/store/actions.type";
 import Sidebar from "@/components/menu/Sidebar.vue";
 import Burger from "@/components/menu/Burger.vue";
+
 /* eslint-disable no-console */
 export default {
   name: "RwvHeader",
@@ -91,3 +110,7 @@ export default {
   }
 };
 </script>
+
+<style>
+  
+</style>

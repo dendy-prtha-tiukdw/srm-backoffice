@@ -21,3 +21,4 @@ export const LOGOUT = "logout";
 export const REGISTER = "register";
 export const UPDATE_USER = "updateUser";
 export const TOGGLE_NAVBAR = "toggleNavbar";
+export const DAFTAR_KELAS = "daftar-kelas";
