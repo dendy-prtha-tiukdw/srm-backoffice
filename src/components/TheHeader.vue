@@ -68,15 +68,6 @@
                 Daftar Kelas
               </router-link>
             </li>
-            <li>              
-              <router-link
-                class="nav-link"
-                active-class="active"
-                exact
-                :to="{ name: 'daftar-kelas' }"
-              >
-                Daftar Kelas
-              </router-link></li>
           </ul>
         </Sidebar>
       </ul>

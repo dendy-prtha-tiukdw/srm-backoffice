@@ -7,7 +7,8 @@ import {
   LOGOUT,
   REGISTER,
   CHECK_AUTH,
-  UPDATE_USER
+  UPDATE_USER,
+  DAFTAR_KELAS
 } from "./actions.type";
 import { SET_AUTH, PURGE_AUTH, SET_ERROR } from "./mutations.type";
 
@@ -106,7 +107,21 @@ const actions = {
       context.commit(SET_AUTH, data.user);
       return data;
     });
-  }
+  },
+  [DAFTAR_KELAS](context, semester, tahunAjaran) {
+    return new Promise(resolve => {
+      const kelasRequest = {
+        semester: semester,
+        tahunAjaran: tahunAjaran,
+      };
+      ApiService.post("kelas/all", kelasRequest)
+        .then(({ data }) => {
+          context.commit(SET_AUTH, data);
+          console.log("success");
+          resolve(data);
+        })
+    })
+  },
 };
 
 const mutations = {
