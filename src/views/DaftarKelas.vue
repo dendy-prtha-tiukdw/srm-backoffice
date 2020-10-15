@@ -44,7 +44,6 @@
 <script>
     import { mapState } from "vuex";
     import { DAFTAR_KELAS } from "@/store/actions.type";
-    import JwtService from "@/common/jwt.service";
     export default {
         name: "daftar-kelas",
             data () {
@@ -59,16 +58,9 @@
         methods: {
           submitInput(){
             // console.log({ tahunAjaran: this.tahunAjaran, selectedSemester: this.selectedSemester });          
-            this.$gAuth
-              .geta
-              .then(authCode => {
-                console.log(authCode);
+          
                 this.$store
                   .dispatch(DAFTAR_KELAS, this.selectedSemester, this.tahunAjaran);
-              })
-              .catch(error => {
-                console.log(error);
-              });
                 }
          },
         computed: {
