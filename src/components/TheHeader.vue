@@ -2,7 +2,7 @@
   <nav class="navbar navbar-light">
     <div class="container">
       <ul v-if="isAuthenticated" class="nav navbar-nav pull-xs-left">
-        <Burger></Burger>
+        <!-- <Burger></Burger> -->
       </ul>
       <router-link class="navbar-brand" :to="{ name: 'home' }">
         SRM Backoffice
@@ -21,7 +21,7 @@
       </ul>
 
       <ul v-else class="nav navbar-nav pull-xs-right">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <router-link
             class="nav-link"
             active-class="active"
@@ -30,7 +30,7 @@
           >
             Home
           </router-link>
-        </li>
+        </li> -->
         <li class="nav-item">
           <button
             class="btn btn-lg btn-primary pull-xs-center"
@@ -54,13 +54,13 @@
             {{ currentUser.name }}
           </router-link> 
         </li>-->
-        <Sidebar>
+        <!-- <Sidebar>
           <ul class="sidebar-panel-nav">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/daftarkelas">Daftar Kelas</a></li>
+            <li><a href="/about">About</a></li>
           </ul>
-        </Sidebar>
+        </Sidebar> -->
       </ul>
     </div>
   </nav>
@@ -69,14 +69,14 @@
 <script>
 import { mapGetters } from "vuex";
 import { LOGOUT } from "@/store/actions.type";
-import Sidebar from "@/components/menu/Sidebar.vue";
-import Burger from "@/components/menu/Burger.vue";
+// import Sidebar from "@/components/menu/Sidebar.vue";
+// import Burger from "@/components/menu/Burger.vue";
 /* eslint-disable no-console */
 export default {
   name: "RwvHeader",
   components: {
-    Sidebar,
-    Burger
+    // Sidebar,
+    // Burger
   },
   methods: {
     handleLogOut() {
