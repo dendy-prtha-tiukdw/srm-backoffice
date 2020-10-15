@@ -1,6 +1,9 @@
 <template>
   <nav class="navbar navbar-light">
     <div class="container">
+      <ul v-if="isAuthenticated" class="nav navbar-nav pull-xs-left">
+        <!-- <Burger></Burger> -->
+      </ul>
       <router-link class="navbar-brand" :to="{ name: 'home' }">
         SRM Backoffice
       </router-link>
@@ -16,17 +19,10 @@
           </router-link>
         </li>
       </ul>
+
       <ul v-else class="nav navbar-nav pull-xs-right">
-        <li class="nav-item">
-          <router-link
-            class="nav-link"
-            active-class="active"
-            exact
-            :to="{ name: 'home' }"
-          >
-            Home
-          </router-link>
-        </li>
+        <!-- <li class="nav-item">
+        </li> -->
         <li class="nav-item">
           <button
             class="btn btn-lg btn-primary pull-xs-center"
@@ -50,6 +46,30 @@
             {{ currentUser.name }}
           </router-link> 
         </li>-->
+        <!-- <Sidebar>
+          <ul class="sidebar-panel-nav">
+            <li>
+              <router-link
+                class="nav-link"
+                active-class="active"
+                exact
+                :to="{ name: 'home' }"
+              >
+                Home
+              </router-link>
+            </li>
+            <li>              
+              <router-link
+                class="nav-link"
+                active-class="active"
+                exact
+                :to="{ name: 'daftar-kelas' }"
+              >
+                Daftar Kelas
+              </router-link>
+            </li>
+          </ul>
+        </Sidebar> -->
       </ul>
     </div>
   </nav>
@@ -58,9 +78,14 @@
 <script>
 import { mapGetters } from "vuex";
 import { LOGOUT } from "@/store/actions.type";
+
 /* eslint-disable no-console */
 export default {
   name: "RwvHeader",
+  components: {
+    // Sidebar,
+    // Burger
+  },
   methods: {
     handleLogOut() {
       console.log("LOGOUTTTTT");
@@ -74,3 +99,5 @@ export default {
   }
 };
 </script>
+
+<style></style>
