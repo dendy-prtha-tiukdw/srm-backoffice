@@ -15,11 +15,15 @@ const getters = {
 
 const actions = {
   [FETCH_DAFTAR_KELAS]({ commit }) {
-    console.log("FETCH_DAFTAR_KELAS");
+    // console.log("FETCH_DAFTAR_KELAS");
     return UserService.getDaftarKelas()
       .then(({ data }) => {
-        console.log(data);
-        commit(SET_DAFTAR_KELAS, data);
+        if (data != null) {
+          // console.log(data);
+          commit(SET_DAFTAR_KELAS, data);
+        } else {
+          //todo handle exception
+        }
       })
       .catch(error => {
         throw new Error(error);
@@ -30,8 +34,8 @@ const actions = {
 const mutations = {
   [SET_DAFTAR_KELAS](state, daftarkelas) {
     state.daftarkelas = daftarkelas.data;
-    console.log("SET_DAFTAR_KELAS");
-    console.log(state.daftarkelas);
+    // console.log("SET_DAFTAR_KELAS");
+    // console.log(state.daftarkelas);
     state.errors = {};
   }
 };

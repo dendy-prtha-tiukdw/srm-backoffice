@@ -16,11 +16,11 @@ const getters = {
 const actions = {
   [FETCH_DETAIL_KELAS](context, detailKelasRequest) {
     return new Promise(resolve => {
-      console.log(detailKelasRequest);
+      // console.log(detailKelasRequest);
       KelasService.getDetailKelas(detailKelasRequest)
         .then(({ data }) => {
           context.commit(SET_DETAIL_KELAS, data);
-          console.log("success");
+          // console.log("success");
           resolve(data);
         })
         .catch(({ response }) => {
@@ -37,8 +37,8 @@ const mutations = {
   },
   [SET_DETAIL_KELAS](state, detailKelas) {
     state.detailKelas = detailKelas.data;
-    console.log("SET_DAFTAR_KELAS");
-    console.log(state.detailKelas);
+    // console.log("SET_DAFTAR_KELAS");
+    // console.log(state.detailKelas);
     state.errors = {};
   }
 };
