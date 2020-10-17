@@ -50,7 +50,7 @@ const ApiService = {
           //return Promise.reject(error);
           throw new Error(`[RWV] ApiService ${error}`);
         }
-        console.log("ERRORR createAxiosResponseInterceptor");
+        console.log("Refreshing access token!");
         //console.log(error.response);
         /*
          * When response code is 401, try to refresh the token.
@@ -110,5 +110,11 @@ export const UserService = {
 export const KelasService = {
   getDetailKelas(detailKelasRequest) {
     return ApiService.securedPost("kelas/detail", detailKelasRequest);
+  }
+};
+
+export const PengumumanService = {
+  create(pengumumanRequest) {
+    return ApiService.securedPost("/pengumuman/create", pengumumanRequest);
   }
 };
