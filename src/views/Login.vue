@@ -31,7 +31,7 @@ export default {
       password: null
     };
   },
-  beforeMount() {
+  beforeCreate() {
     if (JwtService.getRefreshToken()) {
       this.$router.push({ name: "home" });
     }
@@ -48,10 +48,7 @@ export default {
       this.$gAuth
         .getAuthCode()
         .then(authCode => {
-          console.log(authCode);
-          this.$store
-            .dispatch(LOGIN, authCode)
-            .then(() => this.$router.push({ name: "home" }));
+          this.$store.dispatch(LOGIN, authCode);
         })
         .catch(error => {
           console.log(error);

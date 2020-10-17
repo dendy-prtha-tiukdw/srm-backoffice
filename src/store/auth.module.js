@@ -15,7 +15,7 @@ import { SET_AUTH, PURGE_AUTH, SET_ERROR } from "./mutations.type";
 const state = {
   errors: null,
   user: {},
-  isAuthenticated: !!JwtService.getIdToken()
+  isAuthenticated: !!JwtService.getRefreshToken()
 };
 
 const getters = {
@@ -47,9 +47,17 @@ const actions = {
       };
       ApiService.post("auth/signin", signInRequest)
         .then(({ data }) => {
-          context.commit(SET_AUTH, data);
-          console.log("success");
-          resolve(data);
+          //console.log(data.data);
+          if (
+            data.data.role == "ROLE_DOSEN" ||
+            data.data.role == "ROLE_STAFF"
+          ) {
+            context.commit(SET_AUTH, data.data);
+            resolve(data);
+          } else {
+            // console.log("role unauthorize");
+            context.commit(SET_ERROR, "role unauthorize");
+          }
         })
         .catch(({ response }) => {
           console.log("error");
@@ -128,22 +136,21 @@ const mutations = {
     state.errors = error;
   },
   [SET_AUTH](state, user) {
-    var parsedUser = JSON.parse(JSON.stringify(user));
     state.isAuthenticated = true;
-    state.user = parsedUser;
+    state.user = user;
     state.errors = {};
     console.log("FROM mutations SET_AUTH");
-    console.log(parsedUser);
+    console.log(user);
     JwtService.saveUserSession(
-      parsedUser.data.accessToken,
-      parsedUser.data.idToken,
-      parsedUser.data.email,
-      parsedUser.data.fcmToken,
-      parsedUser.data.imageUrl,
-      parsedUser.data.nama,
-      parsedUser.data.nomorInduk,
-      parsedUser.data.refreshToken,
-      parsedUser.data.role
+      user.accessToken,
+      user.idToken,
+      user.email,
+      user.fcmToken,
+      user.imageUrl,
+      user.nama,
+      user.nomorInduk,
+      user.refreshToken,
+      user.role
     );
   },
   [PURGE_AUTH](state) {

@@ -7,7 +7,7 @@ const NAME_KEY = "name";
 const NO_INDUK_KEY = "no_induk";
 const REFRESH_TOKEN_KEY = "refresh_token";
 const ROLE_KEY = "role";
-
+/* eslint-disable no-console */
 export const getName = () => {
   return window.localStorage.getItem(NAME_KEY);
 };
@@ -63,15 +63,15 @@ export const saveUserSession = (
   refresh_token,
   role
 ) => {
-  window.localStorage.setItem(ACCESS_TOKEN_KEY, JSON.stringify(access_token));
-  window.localStorage.setItem(ID_TOKEN_KEY, JSON.stringify(id_token));
-  window.localStorage.setItem(EMAIL_KEY, JSON.stringify(email));
-  window.localStorage.setItem(FCM_TOKEN_KEY, JSON.stringify(fcm_token));
-  window.localStorage.setItem(IMAGE_URL_KEY, JSON.stringify(image_url));
-  window.localStorage.setItem(NAME_KEY, JSON.stringify(name));
-  window.localStorage.setItem(NO_INDUK_KEY, JSON.stringify(no_induk));
-  window.localStorage.setItem(REFRESH_TOKEN_KEY, JSON.stringify(refresh_token));
-  window.localStorage.setItem(ROLE_KEY, JSON.stringify(role));
+  window.localStorage.setItem(ACCESS_TOKEN_KEY, access_token);
+  window.localStorage.setItem(ID_TOKEN_KEY, id_token);
+  window.localStorage.setItem(EMAIL_KEY, email);
+  window.localStorage.setItem(FCM_TOKEN_KEY, fcm_token);
+  window.localStorage.setItem(IMAGE_URL_KEY, image_url);
+  window.localStorage.setItem(NAME_KEY, name);
+  window.localStorage.setItem(NO_INDUK_KEY, no_induk);
+  window.localStorage.setItem(REFRESH_TOKEN_KEY, refresh_token);
+  window.localStorage.setItem(ROLE_KEY, role);
 };
 
 export const destroyUserSession = () => {

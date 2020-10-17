@@ -32,7 +32,7 @@
             Logout
           </button>
         </li>
-        <!-- 
+
         <li class="nav-item" v-if="currentUser.name">
           <router-link
             class="nav-link"
@@ -44,32 +44,8 @@
             }"
           >
             {{ currentUser.name }}
-          </router-link> 
-        </li>-->
-        <!-- <Sidebar>
-          <ul class="sidebar-panel-nav">
-            <li>
-              <router-link
-                class="nav-link"
-                active-class="active"
-                exact
-                :to="{ name: 'home' }"
-              >
-                Home
-              </router-link>
-            </li>
-            <li>              
-              <router-link
-                class="nav-link"
-                active-class="active"
-                exact
-                :to="{ name: 'daftar-kelas' }"
-              >
-                Daftar Kelas
-              </router-link>
-            </li>
-          </ul>
-        </Sidebar> -->
+          </router-link>
+        </li>
       </ul>
     </div>
   </nav>
@@ -86,9 +62,11 @@ export default {
     // Sidebar,
     // Burger
   },
+  created() {
+    // console.log(this.currentUser);
+  },
   methods: {
     handleLogOut() {
-      console.log("LOGOUTTTTT");
       this.$store
         .dispatch(LOGOUT)
         .then(() => this.$router.push({ name: "login" }));
@@ -99,5 +77,3 @@ export default {
   }
 };
 </script>
-
-<style></style>
