@@ -12,3 +12,5 @@ export const SET_NAVBAR = "setNavBar";
 export const SET_DAFTAR_KELAS = "setDaftarKelas";
 
 export const SET_DETAIL_KELAS = "setDetailKelas";
+
+export const SET_LIST_PENGUMUMAN = "setListPengumuman";

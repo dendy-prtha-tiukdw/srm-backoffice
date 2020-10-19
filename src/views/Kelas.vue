@@ -33,7 +33,14 @@
           <td>{{ detailKelas.semester }} {{ detailKelas.tahunAjaran }}</td>
         </tr>
       </tbody>
+      <button
+        class="btn btn-lg btn-info pull-xs-center"
+        @click="handleClickTambahPengumuman"
+      >
+        Buat Pengumuman
+      </button>
     </table>
+
     Peserta Kuliah
   </div>
 </template>
@@ -80,6 +87,17 @@ export default {
   methods: {
     parseMarkdown(content) {
       return marked(content);
+    },
+    handleClickTambahPengumuman() {
+      this.$router.push({
+        name: "tambahpengumuman",
+        params: {
+          group: this.detailKelas.group,
+          namaMatakuliah: this.detailKelas.namaMatakuliah,
+          semester: this.detailKelas.semester,
+          tahunAjaran: this.detailKelas.tahunAjaran
+        }
+      });
     }
   }
 };
