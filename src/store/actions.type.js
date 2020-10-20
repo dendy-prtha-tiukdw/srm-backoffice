@@ -3,6 +3,7 @@ export const CHECK_AUTH = "checkAuth";
 /*Auth state*/
 export const FETCH_DAFTAR_KELAS = "fetchDaftarKelas";
 export const FETCH_DETAIL_KELAS = "fetchDetailKelas";
+export const FETCH_PESERTA_KELAS = "fetchPesertaKelas";
 
 /*Pengumuman state*/
 export const FETCH_PENGUMUMAN = "fetchPengumuman";

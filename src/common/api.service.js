@@ -110,6 +110,9 @@ export const UserService = {
 export const KelasService = {
   getDetailKelas(detailKelasRequest) {
     return ApiService.securedPost("kelas/detail", detailKelasRequest);
+  },
+  getPesertaKelas(pesertaKelasRequest) {
+    return ApiService.securedPost("kelas/mahasiswa/list", pesertaKelasRequest);
   }
 };
 

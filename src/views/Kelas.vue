@@ -42,6 +42,20 @@
     </table>
 
     Peserta Kuliah
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">NIM</th>
+          <th scope="col">NAMA</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="mahasiswa in pesertaKelas" v-bind:key="mahasiswa.nim">
+          <td>{{ mahasiswa.nim }}</td>
+          <td>{{ mahasiswa.nama }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -50,7 +64,7 @@ import { mapGetters } from "vuex";
 import marked from "marked";
 /* eslint-disable no-console */
 import store from "@/store";
-import { FETCH_DETAIL_KELAS } from "@/store/actions.type";
+import { FETCH_DETAIL_KELAS, FETCH_PESERTA_KELAS } from "@/store/actions.type";
 
 export default {
   name: "kelas",
@@ -72,8 +86,8 @@ export default {
     };
     Promise.all([
       //pProup, pNamaMatakuliah, pSemester, pTahunAjaran
-      store.dispatch(FETCH_DETAIL_KELAS, detailKelasRequest)
-      //store.dispatch(FETCH_COMMENTS, to.params.slug)
+      store.dispatch(FETCH_DETAIL_KELAS, detailKelasRequest),
+      store.dispatch(FETCH_PESERTA_KELAS, detailKelasRequest)
     ]).then(() => {
       next();
     });
@@ -82,7 +96,12 @@ export default {
     next();
   },
   computed: {
-    ...mapGetters(["detailKelas", "currentUser", "isAuthenticated"])
+    ...mapGetters([
+      "detailKelas",
+      "pesertaKelas",
+      "currentUser",
+      "isAuthenticated"
+    ])
   },
   methods: {
     parseMarkdown(content) {
