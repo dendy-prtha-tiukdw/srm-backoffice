@@ -34,6 +34,12 @@ export default new Router({
       component: () => import("@/views/About")
     },
     {
+      path: "/daftarpengumuman",
+      name: "daftarpengumuman",
+      props: true,
+      component: () => import("@/views/DaftarPengumuman")
+    },
+    {
       path: "/tambahpengumuman",
       name: "tambahpengumuman",
       props: true,
