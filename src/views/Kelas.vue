@@ -35,9 +35,9 @@
       </tbody>
       <button
         class="btn btn-lg btn-info pull-xs-center"
-        @click="handleClickTambahPengumuman"
+        @click="handleClickListPengumuman"
       >
-        Buat Pengumuman
+        Daftar Pengumuman
       </button>
     </table>
 
@@ -107,9 +107,9 @@ export default {
     parseMarkdown(content) {
       return marked(content);
     },
-    handleClickTambahPengumuman() {
+    handleClickListPengumuman() {
       this.$router.push({
-        name: "tambahpengumuman",
+        name: "daftarpengumuman",
         params: {
           group: this.detailKelas.group,
           namaMatakuliah: this.detailKelas.namaMatakuliah,

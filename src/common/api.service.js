@@ -119,5 +119,8 @@ export const KelasService = {
 export const PengumumanService = {
   create(pengumumanRequest) {
     return ApiService.securedPost("/pengumuman/create", pengumumanRequest);
+  },
+  getDaftarPengumuman(daftarPengumumanRequest) {
+    return ApiService.securedPost("/pengumuman/list", daftarPengumumanRequest);
   }
 };

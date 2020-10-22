@@ -7,6 +7,7 @@ export const FETCH_PESERTA_KELAS = "fetchPesertaKelas";
 
 /*Pengumuman state*/
 export const FETCH_PENGUMUMAN = "fetchPengumuman";
+export const FETCH_DAFTAR_PENGUMUMAN = "fetchDaftarPengumuman";
 export const PENGUMUMAN_CREATE = "createPengumuman";
 export const PENGUMUMAN_RESET_STATE = "pengumumanResetState";
 
