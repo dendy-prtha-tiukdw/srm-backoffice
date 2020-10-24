@@ -11,6 +11,7 @@
                 <li><a href="/home">Home</a></li>
                 <li><a href="/daftarkelas">Daftar Kelas</a></li>
                 <li><a href="/about">About</a></li>
+                <li><a href="/profile">Profile</a></li> 
               </ul>
             </div>
           </div>
@@ -18,9 +19,7 @@
         </div>
       </div>
     </div>
-    <div v-else class="home-page">
-      <router-view></router-view>
-    </div>
+
     <RwvFooter />
   </div>
 </template>

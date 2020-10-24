@@ -14,6 +14,7 @@ const ApiService = {
     Vue.axios.defaults.headers.common[
       "Authorization"
     ] = `Bearer ${JwtService.getAccessToken()}`;
+    Vue.axios.defaults.headers.common["Accept"] = 'application/json';
   },
 
   query(resource, params) {
@@ -104,6 +105,9 @@ export default ApiService;
 export const UserService = {
   getDaftarKelas() {
     return ApiService.securedGet("user/kelas");
+  },
+  getUserProfile(profileRequest) {
+    return ApiService.securedPost("user/profile", profileRequest);
   }
 };
 

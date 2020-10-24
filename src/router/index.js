@@ -44,6 +44,11 @@ export default new Router({
       name: "tambahpengumuman",
       props: true,
       component: () => import("@/views/TambahPengumuman")
-    }
+    },
+    {
+      path: "/profile",
+      name: "profile",
+      component: () => import("@/views/Profile"),
+    },
   ]
 });
