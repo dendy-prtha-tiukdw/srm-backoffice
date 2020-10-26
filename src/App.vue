@@ -19,7 +19,9 @@
         </div>
       </div>
     </div>
-
+     <div v-else class="home-page">
+      <router-view></router-view>
+    </div>
     <RwvFooter />
   </div>
 </template>
