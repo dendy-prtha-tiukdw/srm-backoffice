@@ -18,3 +18,6 @@ export const REGISTER = "register";
 export const UPDATE_USER = "updateUser";
 export const TOGGLE_NAVBAR = "toggleNavbar";
 export const DAFTAR_KELAS = "daftarKelas";
+
+/*Profile state*/
+export const FETCH_PROFILE = "profile";
