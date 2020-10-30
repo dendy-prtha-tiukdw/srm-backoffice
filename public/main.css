@@ -7367,7 +7367,7 @@ footer .attribution {
   .scroll-content{
     display: flex!important;
   }
-  
+
   .modal-wrapper {
     display: table-cell;
     vertical-align: middle;
@@ -7380,3 +7380,12 @@ footer .attribution {
   div {
       margin-bottom: 10px;
   }
+
+
+/* custom layout */
+
+.custom-div-center {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}

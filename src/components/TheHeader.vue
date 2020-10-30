@@ -24,10 +24,7 @@
         <!-- <li class="nav-item">
         </li> -->
         <li class="nav-item">
-          <button
-            class="btn btn-lg btn-primary pull-xs-center"
-            @click="handleLogOut"
-          >
+          <button class="btn btn-primary" @click="handleLogOut">
             <i class="ion-log-out"></i>
             Logout
           </button>

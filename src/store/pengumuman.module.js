@@ -110,7 +110,6 @@ export const mutations = {
   },
   [SET_LIST_PENGUMUMAN](state, data) {
     state.listPengumuman = data;
-    console.log(state.listPengumuman);
   }
 };
 
