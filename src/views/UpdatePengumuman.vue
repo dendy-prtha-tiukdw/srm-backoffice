@@ -1,12 +1,12 @@
 <template>
   <div class="col-md-9">
-    <form @submit.prevent="onUmumkan()">
+    <form @submit.prevent="onUpdate()">
       <fieldset>
         <fieldset class="form-group">
           <h2> Judul Pengumuman </h2>  
           <textarea
             class="form-control" 
-            v-model="pengumuman.judulPengumuman"
+            v-model="updateJudulPengumuman"
             rows="8"
             placeholder="Tuliskan judul pengumuman anda"
           >
@@ -16,14 +16,14 @@
           <textarea
             class="form-control"
             rows="8"
-            v-model="pengumuman.pengumuman"
+            v-model="isiPengumuman"
             placeholder="Tuliskan isi pengumuman Anda"
           >
           </textarea>
         </fieldset>
       </fieldset>
       <button class="btn btn-lg pull-xs-right btn-primary" type="submit">
-        Umumkan
+        Update
       </button>
     </form>
   </div>
@@ -32,7 +32,7 @@
 <script>
 // @ is an alias to /src
 import {
-  PENGUMUMAN_CREATE,
+  PENGUMUMAN_UPDATE,
   PENGUMUMAN_RESET_STATE
 } from "@/store/actions.type";
 import { mapGetters } from "vuex";
@@ -40,9 +40,10 @@ import store from "@/store";
 /* eslint-disable no-console */
 
 export default {
-  name: "tambahpengumuman",
   data() {
     return {
+      updateJudulPengumuman: '',
+      isiPengumuman: '',
       errors: {}
     };
   },
@@ -51,15 +52,17 @@ export default {
     next();
   },
   mounted() {
-    this.pengumuman.group = this.$route.params.group;
-    this.pengumuman.namaMatkul = this.$route.params.namaMatakuliah;
-    this.pengumuman.semester = this.$route.params.semester;
-    this.pengumuman.tahunAjaran = this.$route.params.tahunAjaran;
+    this.pengumuman.idPengumuman = this.$route.params.id;
   },
   methods: {
-    onUmumkan() {
+    onUpdate() {
+      const pengumuman = {
+        idPengumuman: this.$route.params.id,
+        judulPengumuman: this.updateJudulPengumuman,
+        pengumuman: this.isiPengumuman
+      }
       this.$store
-        .dispatch(PENGUMUMAN_CREATE)
+        .dispatch(PENGUMUMAN_UPDATE, pengumuman)
         .then(({ data }) => {
           console.log(data);
           this.$router.push({
@@ -72,7 +75,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["judulPengumuman","pengumuman", "isAuthenticated"])
+    ...mapGetters(["judulPengumuman", "pengumuman", "isAuthenticated"])
   }
 };
 </script>

@@ -50,5 +50,17 @@ export default new Router({
       name: "profile",
       component: () => import("@/views/Profile"),
     },
+    },
+    {
+      path: "/updatepengumuman/:id",
+      name: "updatepengumuman",
+      props: true,
+      component: () => import("@/views/UpdatePengumuman")
+    },
+    {
+      path: "/profile",
+      name: "profile",
+      component: () => import("@/views/Profile")
+    }
   ]
 });

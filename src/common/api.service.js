@@ -97,7 +97,7 @@ const ApiService = {
     return Vue.axios.post(`${resource}`, params).catch(error => {
       throw new Error(`[RWV] ApiService ${error}`);
     });
-  }
+  },
 };
 
 export default ApiService;
@@ -123,6 +123,12 @@ export const KelasService = {
 export const PengumumanService = {
   create(pengumumanRequest) {
     return ApiService.securedPost("/pengumuman/create", pengumumanRequest);
+  },
+  delete(idPengumuman) {
+    return ApiService.securedPost("/pengumuman/delete", idPengumuman);
+  },
+  update(daftarPengumumanRequest){
+    return ApiService.securedPost("/pengumuman/update", daftarPengumumanRequest);
   },
   getDaftarPengumuman(daftarPengumumanRequest) {
     return ApiService.securedPost("/pengumuman/list", daftarPengumumanRequest);
