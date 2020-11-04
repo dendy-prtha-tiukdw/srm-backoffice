@@ -10,12 +10,13 @@ import { SET_ERROR, RESET_STATE, SET_LIST_PENGUMUMAN } from "./mutations.type";
 /* eslint-disable no-console */
 const initialState = {
   pengumuman: {
+    idPengumuman: "",
     group: "",
     namaMatkul: "",
+    judulPengumuman: "",
     pengumuman: "",
     semester: "",
-    tahunAjaran: "",
-    IdPengumuman: ""
+    tahunAjaran: ""
   },
   listPengumuman: {},
   errors: {}
@@ -30,10 +31,9 @@ const getters = {
   daftarPengumuman(state) {
     return state.listPengumuman;
   },
-  destroy(state){
+  destroy(state) {
     return state.IdPengumuman;
   }
-  
 };
 
 export const actions = {
@@ -49,11 +49,11 @@ export const actions = {
         });
     });
   },
-  [PENGUMUMAN_DELETE]({ commit }, pengumuman) {
+  [PENGUMUMAN_DELETE]({ commit, state }) {
     // return PengumumanService.destroy(daftarPengumumanRequest);
-    console.log(pengumuman)
+    console.log(state.pengumuman);
     return new Promise(resolve => {
-      PengumumanService.delete(pengumuman)
+      PengumumanService.delete(state.pengumuman)
         .then(({ data }) => {
           resolve(data);
         })
@@ -63,10 +63,10 @@ export const actions = {
         });
     });
   },
-  [PENGUMUMAN_UPDATE]({ commit }, pengumuman) {
-    console.log(pengumuman)
+  [PENGUMUMAN_UPDATE]({ commit, state }) {
+    console.log(state.pengumuman);
     return new Promise(resolve => {
-      PengumumanService.update(pengumuman)
+      PengumumanService.update(state.pengumuman)
         .then(({ data }) => {
           resolve(data);
         })

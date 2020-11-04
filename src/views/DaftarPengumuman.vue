@@ -1,11 +1,11 @@
 <template>
   <div class="col-md-9">
+    DAFTAR PENGUMUMAN
     <table class="table">
       <thead>
         <tr>
-          <th scope="col"> ID </th>
-          <th scope="col"> Judul </th>         
-          <th scope="col">Pengumuman</th>
+          <th scope="col">ID</th>
+          <th scope="col">Judul</th>
           <th scope="col">Tanggal Dibuat</th>
           <th scope="col"></th>
           <th scope="col"></th>
@@ -14,47 +14,22 @@
       <tbody>
         <tr
           v-for="pengumuman in daftarPengumuman"
-          v-bind:key="pengumuman.tanggalInput"
+          v-bind:key="pengumuman.idPengumuman"
         >
-          <td> {{ pengumuman.idPengumuman}}</td>
+          <td>{{ pengumuman.idPengumuman }}</td>
           <td>{{ pengumuman.judulPengumuman }}</td>
-          <td>{{ pengumuman.pengumuman }}</td>
           <td>{{ pengumuman.tanggalInput }}</td>
-          <td>
-            <button class="btn pull-xs-right btn-primary" type="submit"
-              @click="handleClickHapusPengumuman(pengumuman.idPengumuman)"> 
-              Hapus
-            </button>
-          </td>
-        
-          <router-link :to="`/updatepengumuman/${ pengumuman.idPengumuman }`"
-            class="preview-link"
-          >
-            <td>
-              <button class="btn pull-xs-right btn-primary" type="submit"
-                @click="handleClickUpdatePengumuman"> 
-                Update
-              </button>
-            </td>
-          </router-link>
-          <!-- <router-link
-            :to="{
-              name: 'kelas',
-              params: {
-                namaMatakuliah: pengumuman.namaMatakuliah,
-                group: pengumuman.group,
-                semester: pengumuman.semester,
-                tahunAjaran: pengumuman.tahunAjaran
-              }
+          <RwvRouteTableItem
+            :routeName="'editpengumuman'"
+            :data="{
+              isUpdating: true,
+              pengumuman: pengumuman
             }"
-            class="preview-link"
-          >
-            <td>Detail</td>
-          </router-link> -->
+          />
         </tr>
       </tbody>
       <button
-        class="btn btn-lg btn-info pull-xs-center"
+        class="btn btn-info pull-xs-center"
         @click="handleClickTambahPengumuman"
       >
         Tambah Pengumuman
@@ -66,66 +41,49 @@
 <script>
 // @ is an alias to /src
 import { FETCH_DAFTAR_PENGUMUMAN } from "@/store/actions.type";
-import { PENGUMUMAN_DELETE } from "@/store/actions.type";
-
+import RwvRouteTableItem from "@/components/RouteTableItem";
 import { mapGetters, mapState } from "vuex";
-// import DaftarKelasVue from './DaftarKelas.vue';
 /* eslint-disable no-console */
 
 export default {
   name: "daftarPengumuman",
   data() {
-    return {};
+    return {
+      group: "",
+      namaMatakuliah: "",
+      semester: "",
+      tahunAjaran: ""
+    };
   },
   mounted() {
-    const daftarPengumumanRequest = {
-      group: this.$route.params.group,
-      namaMatakuliah: this.$route.params.namaMatakuliah,
-      semester: this.$route.params.semester,
-      tahunAjaran: this.$route.params.tahunAjaran,
-    };
-    console.log(daftarPengumumanRequest);
-    this.pengumuman.idPengumuman = this.$route.params.id;
-    this.$store.dispatch(FETCH_DAFTAR_PENGUMUMAN, daftarPengumumanRequest);
+    if (this.$route.params.namaMatakuliah != null) {
+      this.group = this.$route.params.group;
+      this.namaMatakuliah = this.$route.params.namaMatakuliah;
+      this.semester = this.$route.params.semester;
+      this.tahunAjaran = this.$route.params.semester;
 
+      const daftarPengumumanRequest = {
+        group: this.$route.params.group,
+        namaMatakuliah: this.$route.params.namaMatakuliah,
+        semester: this.$route.params.semester,
+        tahunAjaran: this.$route.params.tahunAjaran
+      };
+      this.$store.dispatch(FETCH_DAFTAR_PENGUMUMAN, daftarPengumumanRequest);
+    }
   },
-  components: {},
+  components: { RwvRouteTableItem },
   methods: {
     handleClickTambahPengumuman() {
       this.$router.push({
-        name: "tambahpengumuman",
-        params: { 
-          group: this.$route.params.group,
-          namaMatakuliah: this.$route.params.namaMatakuliah,
-          semester: this.$route.params.semester,
-          tahunAjaran: this.$route.params.tahunAjaran
-        }
-      });
-    },
-    handleClickHapusPengumuman(id) {
-      const pengumuman = {
-        idPengumuman: id,        
-      }
-       this.$store
-        .dispatch(PENGUMUMAN_DELETE, pengumuman)
-        .then(({ data }) => {
-          console.log(data);
-          this.$router.push({
-            name: "daftarkelas",
-            params: {
-              id: this.$route.params.id,
-            }
-          });
-        })
-        .catch(({ response }) => {
-          this.errors = response.data.errors;
-        });
-    },
-    handleClickUpdatePengumuman() {
-        this.$router.push({
-        name: "updatepengumuman",
+        name: "editpengumuman",
         params: {
-          id: this.$route.params.id,
+          isUpdating: false,
+          pengumuman: {
+            group: this.$route.params.group,
+            namaMatakuliah: this.$route.params.namaMatakuliah,
+            semester: this.$route.params.semester,
+            tahunAjaran: this.$route.params.tahunAjaran
+          }
         }
       });
     }
@@ -134,8 +92,7 @@ export default {
     ...mapState({
       errors: state => state.auth.errors
     }),
-    ...mapGetters(["daftarPengumuman", "pengumuman", "isAuthenticated"])
+    ...mapGetters(["daftarPengumuman", "isAuthenticated"])
   }
 };
 </script>
-  
