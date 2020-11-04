@@ -9,6 +9,8 @@ export const FETCH_PESERTA_KELAS = "fetchPesertaKelas";
 export const FETCH_PENGUMUMAN = "fetchPengumuman";
 export const FETCH_DAFTAR_PENGUMUMAN = "fetchDaftarPengumuman";
 export const PENGUMUMAN_CREATE = "createPengumuman";
+export const PENGUMUMAN_DELETE = "deletePengumuman";
+export const PENGUMUMAN_UPDATE = "updatePengumuman";
 export const PENGUMUMAN_RESET_STATE = "pengumumanResetState";
 
 /*Auth state*/

@@ -1,5 +1,6 @@
 <template>
   <div class="col-md-9">
+    DAFTAR KELAS
     <table class="table">
       <thead>
         <tr>
@@ -16,20 +17,15 @@
           <td>{{ kelas.group }}</td>
           <td>{{ kelas.hari }}</td>
           <td>{{ kelas.jam }}</td>
-          <router-link
-            :to="{
-              name: 'kelas',
-              params: {
-                namaMatakuliah: kelas.namaMatakuliah,
-                group: kelas.group,
-                semester: kelas.semester,
-                tahunAjaran: kelas.tahunAjaran
-              }
+          <RwvRouteTableItem
+            :routeName="'kelas'"
+            :data="{
+              namaMatakuliah: kelas.namaMatakuliah,
+              group: kelas.group,
+              semester: kelas.semester,
+              tahunAjaran: kelas.tahunAjaran
             }"
-            class="preview-link"
-          >
-            <td>Detail</td>
-          </router-link>
+          />
         </tr>
       </tbody>
     </table>
@@ -40,7 +36,7 @@
 <script>
 // @ is an alias to /src
 import { FETCH_DAFTAR_KELAS } from "@/store/actions.type";
-
+import RwvRouteTableItem from "@/components/RouteTableItem";
 import { mapGetters, mapState } from "vuex";
 /* eslint-disable no-console */
 
@@ -49,7 +45,9 @@ export default {
   mounted() {
     this.$store.dispatch(FETCH_DAFTAR_KELAS);
   },
-  components: {},
+  components: {
+    RwvRouteTableItem
+  },
   methods: {},
   computed: {
     ...mapState({

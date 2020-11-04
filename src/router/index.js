@@ -40,15 +40,15 @@ export default new Router({
       component: () => import("@/views/DaftarPengumuman")
     },
     {
-      path: "/tambahpengumuman",
-      name: "tambahpengumuman",
+      path: "/editpengumuman",
+      name: "editpengumuman",
       props: true,
-      component: () => import("@/views/TambahPengumuman")
+      component: () => import("@/views/EditPengumuman")
     },
     {
       path: "/profile",
       name: "profile",
-      component: () => import("@/views/Profile"),
-    },
+      component: () => import("@/views/Profile")
+    }
   ]
 });

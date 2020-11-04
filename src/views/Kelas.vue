@@ -1,5 +1,6 @@
 <template>
   <div class="col-md-9">
+    DETAIL KELAS
     <table class="table">
       <thead>
         <tr>
@@ -34,7 +35,7 @@
         </tr>
       </tbody>
       <button
-        class="btn btn-lg btn-info pull-xs-center"
+        class="btn btn-info pull-xs-center"
         @click="handleClickListPengumuman"
       >
         Daftar Pengumuman

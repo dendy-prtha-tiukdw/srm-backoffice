@@ -1,6 +1,8 @@
 import { PengumumanService } from "@/common/api.service";
 import {
   PENGUMUMAN_CREATE,
+  PENGUMUMAN_DELETE,
+  PENGUMUMAN_UPDATE,
   PENGUMUMAN_RESET_STATE,
   FETCH_DAFTAR_PENGUMUMAN
 } from "./actions.type";
@@ -8,8 +10,10 @@ import { SET_ERROR, RESET_STATE, SET_LIST_PENGUMUMAN } from "./mutations.type";
 /* eslint-disable no-console */
 const initialState = {
   pengumuman: {
+    idPengumuman: "",
     group: "",
     namaMatkul: "",
+    judulPengumuman: "",
     pengumuman: "",
     semester: "",
     tahunAjaran: ""
@@ -26,6 +30,9 @@ const getters = {
   },
   daftarPengumuman(state) {
     return state.listPengumuman;
+  },
+  destroy(state) {
+    return state.IdPengumuman;
   }
 };
 
@@ -33,6 +40,33 @@ export const actions = {
   [PENGUMUMAN_CREATE]({ commit, state }) {
     return new Promise(resolve => {
       PengumumanService.create(state.pengumuman)
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(({ response }) => {
+          console.log(response);
+          commit(SET_ERROR, response.data.errors);
+        });
+    });
+  },
+  [PENGUMUMAN_DELETE]({ commit, state }) {
+    // return PengumumanService.destroy(daftarPengumumanRequest);
+    console.log(state.pengumuman);
+    return new Promise(resolve => {
+      PengumumanService.delete(state.pengumuman)
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(({ response }) => {
+          console.log(response);
+          commit(SET_ERROR, response.data.errors);
+        });
+    });
+  },
+  [PENGUMUMAN_UPDATE]({ commit, state }) {
+    console.log(state.pengumuman);
+    return new Promise(resolve => {
+      PengumumanService.update(state.pengumuman)
         .then(({ data }) => {
           resolve(data);
         })
