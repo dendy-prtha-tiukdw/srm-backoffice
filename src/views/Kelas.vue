@@ -40,6 +40,12 @@
       >
         Daftar Pengumuman
       </button>
+      <button
+        class="btn btn-info pull-xs-center"
+        @click="handleClickListKegiatan"
+      >
+        Daftar Kegiatan
+      </button>
     </table>
 
     Peserta Kuliah
@@ -111,6 +117,17 @@ export default {
     handleClickListPengumuman() {
       this.$router.push({
         name: "daftarpengumuman",
+        params: {
+          group: this.detailKelas.group,
+          namaMatakuliah: this.detailKelas.namaMatakuliah,
+          semester: this.detailKelas.semester,
+          tahunAjaran: this.detailKelas.tahunAjaran
+        }
+      });
+    },
+    handleClickListKegiatan() {
+      this.$router.push({
+        name: "daftarkegiatan",
         params: {
           group: this.detailKelas.group,
           namaMatakuliah: this.detailKelas.namaMatakuliah,

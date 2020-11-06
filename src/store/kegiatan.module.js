@@ -31,7 +31,7 @@ const getters = {
   daftarKegiatan(state) {
     return state.listKegiatan;
   },
-  destroy(state) {
+  destroyKegiatan(state) {
     return state.IdKegiatan;
   }
 };
@@ -50,7 +50,6 @@ export const actions = {
     });
   },
   [KEGIATAN_DELETE]({ commit, state }) {
-    // return PengumumanService.destroy(daftarPengumumanRequest);
     console.log(state.kegiatan);
     return new Promise(resolve => {
       KegiatanService.delete(state.kegiatan)

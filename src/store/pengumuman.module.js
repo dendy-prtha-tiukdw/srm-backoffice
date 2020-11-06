@@ -31,7 +31,7 @@ const getters = {
   daftarPengumuman(state) {
     return state.listPengumuman;
   },
-  destroy(state) {
+  destroyPengumuman(state) {
     return state.IdPengumuman;
   }
 };
@@ -50,7 +50,6 @@ export const actions = {
     });
   },
   [PENGUMUMAN_DELETE]({ commit, state }) {
-    // return PengumumanService.destroy(daftarPengumumanRequest);
     console.log(state.pengumuman);
     return new Promise(resolve => {
       PengumumanService.delete(state.pengumuman)
