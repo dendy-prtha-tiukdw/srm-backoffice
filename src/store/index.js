@@ -7,6 +7,7 @@ import ui from "./ui.module";
 import user from "./user.module";
 import kelas from "./kelas.module";
 import pengumuman from "./pengumuman.module";
+import kegiatan from "./kegiatan.module";
 
 Vue.use(Vuex);
 
@@ -16,7 +17,8 @@ export default new Vuex.Store({
     auth,
     user,
     kelas,
-    pengumuman
+    pengumuman,
+    kegiatan
     //article,
     //profile
   }

@@ -134,3 +134,18 @@ export const PengumumanService = {
     return ApiService.securedPost("/pengumuman/list", daftarPengumumanRequest);
   }
 };
+
+export const KegiatanService = {
+  create(kegiatanRequest) {
+    return ApiService.securedPost("/kegiatan/create", kegiatanRequest);
+  },
+  delete(idKegiatan) {
+    return ApiService.securedPost("/kegiatan/delete", idKegiatan);
+  },
+  update(daftarKegiatanRequest){
+    return ApiService.securedPost("/kegiatan/update", daftarKegiatanRequest);
+  },
+  getDaftarKegiatan(daftarKegiatanRequest) {
+    return ApiService.securedPost("/kegiatan/list", daftarKegiatanRequest);
+  }
+};
