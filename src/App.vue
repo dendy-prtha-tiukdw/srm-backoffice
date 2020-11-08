@@ -43,3 +43,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+  ul {
+    margin-left: 10%;
+  }
+</style>

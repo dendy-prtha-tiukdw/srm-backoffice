@@ -1,5 +1,7 @@
 <template>
   <div class="col-md-9">
+
+
     <fieldset>
       <fieldset class="form-group">
         <input
@@ -20,14 +22,34 @@
       </fieldset>
       <fieldset class="form-group">
         <h5><b>Apakah Kegiatan Sudah Selesai?</b></h5>
-        <input
-          class="form-control form-control"
-          v-model="kegiatan.isComplete"
-          placeholder="true/false"
-          v-text="'test kegiatan'"
-        />
+        <!-- <v-app>
+        <v-sheet class="pa-10">
+          <v-switch
+            v-model="complete"
+            inset
+          ></v-switch>
+        </v-sheet> -->
+         <v-container fluid>
+          <v-radio-group
+            v-model="kegiatan.isComplete"
+            value="kegiatan.isComplete"
+            default
+          >
+            <v-radio
+              label="Belum Selesai"
+              value="false"
+              change= kegiatan.isComplete
+            ></v-radio>
+            <v-radio
+              label="Sudah Selesai"
+              value="true"
+              change= kegiatan.isComplete
+            ></v-radio>
+          </v-radio-group>
+        </v-container>
+        <!-- </v-app> -->
       </fieldset>
-      <fieldset class="form-group">
+      <fieldset class="form-group tanggal">
         <h5> <b>Tanggal Kegiatan Berakhir </b></h5>
         <datetime format="YYYY-MM-DD H:i:s" width="60%" v-model="kegiatan.tanggalBerakhir" placeholder="Masukan tanggal kegiatan berakhir"></datetime>
       </fieldset>
@@ -57,16 +79,21 @@ import {
 import { mapGetters } from "vuex";
 import store from "@/store";
 import datetime from 'vuejs-datetimepicker';
+// import ToggleButton from 'vue-js-toggle-button';
+// import ToggleSwitch from 'vuejs-toggle-switch';
 /* eslint-disable no-console */
 
 export default {
   name: "editkegiatan",
   components: { 
-      datetime, 
+      datetime,
   },
   data() {
     return {
       isUpdating: false,
+      // checkbox: false,
+      // complete: this.kegiatan.isComplete || false,
+      // switch2: false,
       errors: {}
     };
   },
@@ -94,6 +121,7 @@ export default {
   methods: {
     onUmumkan() {
       let action = this.isUpdating ? KEGIATAN_UPDATE : KEGIATAN_CREATE;
+      console.log(this.kegiatan.isComplete);
       this.$store
         .dispatch(action)
         .then(({ data }) => {
@@ -141,3 +169,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+ #switch{
+   padding-bottom: 0;
+ }
+</style>
