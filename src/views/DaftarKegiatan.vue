@@ -8,6 +8,7 @@
           <th scope="col">Judul</th>
           <th scope="col">Tanggal Dibuat</th>
           <th scope="col">Tanggal Berakhir</th>
+          <th scope="col">Kegiatan Sudah Selesai?</th>
           <th scope="col"></th>
           <th scope="col"></th>
         </tr>
@@ -21,6 +22,7 @@
           <td>{{ kegiatan.judulKegiatan }}</td>
           <td>{{ kegiatan.tanggalDibuat }}</td>
           <td>{{ kegiatan.tanggalBerakhir }}</td>
+          <td>{{ kegiatan.complete }}</td>
           <RwvRouteTableItem
             :routeName="'editkegiatan'"
             :data="{

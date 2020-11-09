@@ -1,7 +1,5 @@
 <template>
   <div class="col-md-9">
-
-
     <fieldset>
       <fieldset class="form-group">
         <input
@@ -33,7 +31,6 @@
           <v-radio-group
             v-model="kegiatan.isComplete"
             value="kegiatan.isComplete"
-            default
           >
             <v-radio
               label="Belum Selesai"
