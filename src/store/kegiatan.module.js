@@ -1,45 +1,46 @@
-import { PengumumanService } from "@/common/api.service";
+import { KegiatanService } from "@/common/api.service";
 import {
-  PENGUMUMAN_CREATE,
-  PENGUMUMAN_DELETE,
-  PENGUMUMAN_UPDATE,
-  PENGUMUMAN_RESET_STATE,
-  FETCH_DAFTAR_PENGUMUMAN
+  KEGIATAN_CREATE,
+  KEGIATAN_DELETE,
+  KEGIATAN_UPDATE,
+  KEGIATAN_RESET_STATE,
+  FETCH_DAFTAR_KEGIATAN
 } from "./actions.type";
-import { SET_ERROR, RESET_STATE, SET_LIST_PENGUMUMAN } from "./mutations.type";
+import { SET_ERROR, RESET_STATE, SET_LIST_KEGIATAN } from "./mutations.type";
 /* eslint-disable no-console */
 const initialState = {
-  pengumuman: {
-    idPengumuman: "",
+  kegiatan: {
+    idKegiatan: "",
     group: "",
     namaMatkul: "",
-    judulPengumuman: "",
-    pengumuman: "",
+    judulKegiatan: "",
+    kegiatan: "",
     semester: "",
-    tahunAjaran: ""
+    tahunAjaran: "",
+    isComplete: ""
   },
-  listPengumuman: {},
+  listKegiatan: {},
   errors: {}
 };
 
 export const state = { ...initialState };
 
 const getters = {
-  pengumuman(state) {
-    return state.pengumuman;
+  kegiatan(state) {
+    return state.kegiatan;
   },
-  daftarPengumuman(state) {
-    return state.listPengumuman;
+  daftarKegiatan(state) {
+    return state.listKegiatan;
   },
-  destroyPengumuman(state) {
-    return state.IdPengumuman;
+  destroyKegiatan(state) {
+    return state.IdKegiatan;
   }
 };
 
 export const actions = {
-  [PENGUMUMAN_CREATE]({ commit, state }) {
+  [KEGIATAN_CREATE]({ commit, state }) {
     return new Promise(resolve => {
-      PengumumanService.create(state.pengumuman)
+      KegiatanService.create(state.kegiatan)
         .then(({ data }) => {
           resolve(data);
         })
@@ -49,10 +50,10 @@ export const actions = {
         });
     });
   },
-  [PENGUMUMAN_DELETE]({ commit, state }) {
-    console.log(state.pengumuman);
+  [KEGIATAN_DELETE]({ commit, state }) {
+    console.log(state.kegiatan);
     return new Promise(resolve => {
-      PengumumanService.delete(state.pengumuman)
+      KegiatanService.delete(state.kegiatan)
         .then(({ data }) => {
           resolve(data);
         })
@@ -62,10 +63,10 @@ export const actions = {
         });
     });
   },
-  [PENGUMUMAN_UPDATE]({ commit, state }) {
-    console.log(state.pengumuman);
+  [KEGIATAN_UPDATE]({ commit, state }) {
+    console.log(state.kegiatan);
     return new Promise(resolve => {
-      PengumumanService.update(state.pengumuman)
+      KegiatanService.update(state.kegiatan)
         .then(({ data }) => {
           resolve(data);
         })
@@ -75,11 +76,11 @@ export const actions = {
         });
     });
   },
-  [FETCH_DAFTAR_PENGUMUMAN](context, daftarPengumumanRequest) {
+  [FETCH_DAFTAR_KEGIATAN](context, daftarKegiatanRequest) {
     return new Promise((resolve, reject) => {
-      PengumumanService.getDaftarPengumuman(daftarPengumumanRequest)
+      KegiatanService.getDaftarKegiatan(daftarKegiatanRequest)
         .then(({ data }) => {
-          context.commit(SET_LIST_PENGUMUMAN, data.data);
+          context.commit(SET_LIST_KEGIATAN, data.data);
           resolve(data);
         })
         .catch(({ response }) => {
@@ -88,7 +89,7 @@ export const actions = {
         });
     });
   },
-  [PENGUMUMAN_RESET_STATE]({ commit }) {
+  [KEGIATAN_RESET_STATE]({ commit }) {
     commit(RESET_STATE);
   }
 };
@@ -98,16 +99,16 @@ export const mutations = {
     state.errors = error;
   },
   [RESET_STATE]() {
-    console.log("RESET_STATE");
-    state.pengumuman.group = "";
-    state.pengumuman.namaMatkul = "";
-    state.pengumuman.pengumuman = "";
-    state.pengumuman.semester = "";
-    state.pengumuman.tahunAjaran = "";
+    // console.log("RESET_STATE");
+    state.kegiatan.group = "";
+    state.kegiatan.namaMatkul = "";
+    state.kegiatan.pengumuman = "";
+    state.kegiatan.semester = "";
+    state.kegiatan.tahunAjaran = "";
   },
-  [SET_LIST_PENGUMUMAN](state, data) {
-    state.listPengumuman = data;
-    console.log(state.listPengumuman);
+  [SET_LIST_KEGIATAN](state, data) {
+    state.listKegiatan = data;
+    // console.log(state.listKegiatan);
   }
 };
 

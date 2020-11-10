@@ -46,6 +46,18 @@ export default new Router({
       component: () => import("@/views/EditPengumuman")
     },
     {
+      path: "/daftarkegiatan",
+      name: "daftarkegiatan",
+      props: true,
+      component: () => import("@/views/DaftarKegiatan")
+    },
+    {
+      path: "/editkegiatan",
+      name: "editkegiatan",
+      props: true,
+      component: () => import("@/views/EditKegiatan")
+    },
+    {
       path: "/profile",
       name: "profile",
       component: () => import("@/views/Profile")
