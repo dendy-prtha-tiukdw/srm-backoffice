@@ -14,15 +14,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="kegiatan in daftarKegiatan"
-          v-bind:key="kegiatan.idKegiatan"
-        >
-          <td>{{ kegiatan.idKegiatan}}</td>
+        <tr v-for="kegiatan in daftarKegiatan" v-bind:key="kegiatan.idKegiatan">
+          <td>{{ kegiatan.idKegiatan }}</td>
           <td>{{ kegiatan.judulKegiatan }}</td>
           <td>{{ kegiatan.tanggalDibuat }}</td>
           <td>{{ kegiatan.tanggalBerakhir }}</td>
-          <td>{{ kegiatan.complete }}</td>
+          <td>{{ kegiatan.isComplete }}</td>
           <RwvRouteTableItem
             :routeName="'editkegiatan'"
             :data="{

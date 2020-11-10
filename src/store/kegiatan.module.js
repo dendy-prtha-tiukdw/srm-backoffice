@@ -16,7 +16,8 @@ const initialState = {
     judulKegiatan: "",
     kegiatan: "",
     semester: "",
-    tahunAjaran: ""
+    tahunAjaran: "",
+    isComplete: ""
   },
   listKegiatan: {},
   errors: {}
@@ -98,7 +99,7 @@ export const mutations = {
     state.errors = error;
   },
   [RESET_STATE]() {
-    console.log("RESET_STATE");
+    // console.log("RESET_STATE");
     state.kegiatan.group = "";
     state.kegiatan.namaMatkul = "";
     state.kegiatan.pengumuman = "";
@@ -107,7 +108,7 @@ export const mutations = {
   },
   [SET_LIST_KEGIATAN](state, data) {
     state.listKegiatan = data;
-    console.log(state.listKegiatan);
+    // console.log(state.listKegiatan);
   }
 };
 

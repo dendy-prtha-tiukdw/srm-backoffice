@@ -20,35 +20,26 @@
       </fieldset>
       <fieldset class="form-group">
         <h5><b>Apakah Kegiatan Sudah Selesai?</b></h5>
-        <!-- <v-app>
-        <v-sheet class="pa-10">
-          <v-switch
-            v-model="complete"
-            inset
-          ></v-switch>
-        </v-sheet> -->
-         <v-container fluid>
-          <v-radio-group
-            v-model="kegiatan.isComplete"
-            value="kegiatan.isComplete"
-          >
-            <v-radio
-              label="Belum Selesai"
-              value="false"
-              change= kegiatan.isComplete
-            ></v-radio>
-            <v-radio
-              label="Sudah Selesai"
-              value="true"
-              change= kegiatan.isComplete
-            ></v-radio>
-          </v-radio-group>
-        </v-container>
-        <!-- </v-app> -->
+        <input type="radio" id="completed" value="true" v-model="isComplete" />
+        <label for="completed">Selesai</label>
+        <br />
+        <input
+          type="radio"
+          id="notcomplete"
+          value="false"
+          v-model="isComplete"
+        />
+        <label for="notcomplete">Belum Selesai</label>
+        <br />
       </fieldset>
       <fieldset class="form-group tanggal">
-        <h5> <b>Tanggal Kegiatan Berakhir </b></h5>
-        <datetime format="YYYY-MM-DD H:i:s" width="60%" v-model="kegiatan.tanggalBerakhir" placeholder="Masukan tanggal kegiatan berakhir"></datetime>
+        <h5><b>Tanggal Kegiatan Berakhir </b></h5>
+        <datetime
+          format="YYYY-MM-DD H:i:s"
+          width="60%"
+          v-model="kegiatan.tanggalBerakhir"
+          placeholder="Masukan tanggal kegiatan berakhir"
+        ></datetime>
       </fieldset>
     </fieldset>
     <button class="btn btn-primary" @click="onUmumkan">
@@ -75,22 +66,19 @@ import {
 } from "@/store/actions.type";
 import { mapGetters } from "vuex";
 import store from "@/store";
-import datetime from 'vuejs-datetimepicker';
-// import ToggleButton from 'vue-js-toggle-button';
-// import ToggleSwitch from 'vuejs-toggle-switch';
+import datetime from "vuejs-datetimepicker";
+
 /* eslint-disable no-console */
 
 export default {
   name: "editkegiatan",
-  components: { 
-      datetime,
+  components: {
+    datetime
   },
   data() {
     return {
       isUpdating: false,
-      // checkbox: false,
-      // complete: this.kegiatan.isComplete || false,
-      // switch2: false,
+      isComplete: false,
       errors: {}
     };
   },
@@ -99,40 +87,45 @@ export default {
     next();
   },
   mounted() {
-    console.log("this.$route.params");
-    console.log(this.$route.params);
-    this.isUpdating = this.$route.params.isUpdating;
-    this.kegiatan.group = this.$route.params.kegiatan.group;
-    this.kegiatan.namaMatkul = this.$route.params.kegiatan.namaMatakuliah;
-    this.kegiatan.semester = this.$route.params.kegiatan.semester;
-    this.kegiatan.tahunAjaran = this.$route.params.kegiatan.tahunAjaran;
-    this.kegiatan.idKegiatan = this.$route.params.kegiatan.idKegiatan;
-    this.kegiatan.judulKegiatan = this.$route.params.kegiatan.judulKegiatan;
-    this.kegiatan.kegiatan = this.$route.params.kegiatan.isiKegiatan;
-    this.kegiatan.tanggalBerakhir = this.$route.params.kegiatan.tanggalBerakhir;
-    this.kegiatan.tanngalDibuat = this.$route.params.kegiatan.tanggalDibuat;
-    this.kegiatan.isComplete = this.$route.params.kegiatan.isComplete;
+    // console.log(this.$route.params);
 
-    console.log(this.kegiatan);
+    if (this.$route.params.kegiatan != null) {
+      this.isUpdating = this.$route.params.isUpdating;
+      this.kegiatan.group = this.$route.params.kegiatan.group;
+      this.kegiatan.namaMatkul = this.$route.params.kegiatan.namaMatakuliah;
+      this.kegiatan.semester = this.$route.params.kegiatan.semester;
+      this.kegiatan.tahunAjaran = this.$route.params.kegiatan.tahunAjaran;
+      this.kegiatan.idKegiatan = this.$route.params.kegiatan.idKegiatan;
+      this.kegiatan.judulKegiatan = this.$route.params.kegiatan.judulKegiatan;
+      this.kegiatan.kegiatan = this.$route.params.kegiatan.isiKegiatan;
+      this.kegiatan.tanggalBerakhir = this.$route.params.kegiatan.tanggalBerakhir;
+      this.kegiatan.tanggalDibuat = this.$route.params.kegiatan.tanggalDibuat;
+      this.kegiatan.isComplete = this.$route.params.kegiatan.isComplete;
+      this.isComplete = this.kegiatan.isComplete == "true" ? true : false;
+      // console.log(typeof(this.isComplete));
+      // console.log( this.$route.params.kegiatan.isComplete);
+    }
   },
   methods: {
     onUmumkan() {
       let action = this.isUpdating ? KEGIATAN_UPDATE : KEGIATAN_CREATE;
-      console.log(this.kegiatan.isComplete);
+      this.kegiatan.isComplete = this.isComplete;
+      // console.log(this.kegiatan.complete);
+      // console.log(action);
       this.$store
         .dispatch(action)
         .then(({ data }) => {
           console.log(data);
           this.$router.push({
-            name: "daftarkegiatan", 
+            name: "daftarkegiatan",
             params: {
               group: this.kegiatan.group,
               namaMatakuliah: this.kegiatan.namaMatkul,
               semester: this.kegiatan.semester,
               tahunAjaran: this.kegiatan.tahunAjaran,
               tanggalBerakhir: this.kegiatan.tanggalBerakhir,
-              tanggalDibuat: this.kegiatan.tanngalDibuat,
-              isComplete:  this.kegiatan.isComplete
+              tanggalDibuat: this.kegiatan.tanggalDibuat,
+              isComplete: this.kegiatan.isComplete
             }
           });
         })
@@ -166,9 +159,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
- #switch{
-   padding-bottom: 0;
- }
-</style>

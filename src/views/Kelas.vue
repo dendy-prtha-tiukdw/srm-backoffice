@@ -34,20 +34,23 @@
           <td>{{ detailKelas.semester }} {{ detailKelas.tahunAjaran }}</td>
         </tr>
       </tbody>
+    </table>
+    <div>
       <button
         class="btn btn-info pull-xs-center"
         @click="handleClickListPengumuman"
       >
         Daftar Pengumuman
       </button>
+      &nbsp;&nbsp;&nbsp;
       <button
         class="btn btn-info pull-xs-center"
         @click="handleClickListKegiatan"
       >
         Daftar Kegiatan
       </button>
-    </table>
-
+    </div>
+    <br />
     Peserta Kuliah
     <table class="table">
       <thead>
