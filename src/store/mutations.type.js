@@ -17,3 +17,7 @@ export const SET_PESERTA_KELAS = "setPesertaKelas";
 export const SET_LIST_PENGUMUMAN = "setListPengumuman";
 
 export const SET_LIST_KEGIATAN = "setListKegiatan";
+
+export const SET_LIST_MATAKULIAH = "setListMatakuliah";
+
+export const SET_LIST_DOSEN = "setListDosen";

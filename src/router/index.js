@@ -29,6 +29,12 @@ export default new Router({
       props: true
     },
     {
+      path: "/editkelas",
+      name: "editkelas",
+      props: true,
+      component: () => import("@/views/EditKelas")
+    },
+    {
       path: "/about",
       name: "about",
       component: () => import("@/views/About")
