@@ -29,6 +29,9 @@
         </tr>
       </tbody>
     </table>
+    <button class="btn btn-info pull-xs-center" @click="handleClickTambahKelas">
+      Tambah Kelas
+    </button>
     <router-view></router-view>
   </div>
 </template>
@@ -48,7 +51,25 @@ export default {
   components: {
     RwvRouteTableItem
   },
-  methods: {},
+  methods: {
+    handleClickTambahKelas() {
+      this.$router.push({
+        name: "editkelas",
+        params: {
+          isUpdating: false,
+          kelas: {
+            group: this.$route.params.group,
+            namaMatakuliah: this.$route.params.namaMatakuliah,
+            semester: this.$route.params.semester,
+            tahunAjaran: this.$route.params.tahunAjaran
+          },
+          matakuliah: {
+            prodi: this.$route.params.prodi
+          }
+        }
+      });
+    }
+  },
   computed: {
     ...mapState({
       errors: state => state.auth.errors

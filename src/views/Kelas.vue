@@ -49,6 +49,13 @@
       >
         Daftar Kegiatan
       </button>
+      &nbsp;&nbsp;&nbsp;
+      <button
+        class="btn btn-outline-danger btn-warning hapuskelas"
+        @click="onHapusKelas"
+      >
+        <i class="ion-trash-a"></i> <span>&nbsp;Hapus Kelas</span>
+      </button>
     </div>
     <br />
     Peserta Kuliah
@@ -74,7 +81,11 @@ import { mapGetters } from "vuex";
 import marked from "marked";
 /* eslint-disable no-console */
 import store from "@/store";
-import { FETCH_DETAIL_KELAS, FETCH_PESERTA_KELAS } from "@/store/actions.type";
+import {
+  FETCH_DETAIL_KELAS,
+  FETCH_PESERTA_KELAS,
+  KELAS_DELETE
+} from "@/store/actions.type";
 
 export default {
   name: "kelas",
@@ -84,6 +95,7 @@ export default {
     semester: String,
     tahunAjaran: String
   },
+
   components: {},
   created() {},
   beforeRouteEnter(to, from, next) {
@@ -138,6 +150,25 @@ export default {
           tahunAjaran: this.detailKelas.tahunAjaran
         }
       });
+    },
+    onHapusKelas() {
+      this.$store
+        .dispatch(KELAS_DELETE)
+        .then(({ data }) => {
+          console.log(data);
+          this.$router.push({
+            name: "daftarkelas",
+            params: {
+              group: this.detailKelas.group,
+              namaMatakuliah: this.detailKelas.namaMatakuliah,
+              semester: this.detailKelas.semester,
+              tahunAjaran: this.detailKelas.tahunAjaran
+            }
+          });
+        })
+        .catch(({ response }) => {
+          this.errors = response.data.errors;
+        });
     }
   }
 };

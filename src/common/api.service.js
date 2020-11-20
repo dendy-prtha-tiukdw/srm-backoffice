@@ -14,7 +14,7 @@ const ApiService = {
     Vue.axios.defaults.headers.common[
       "Authorization"
     ] = `Bearer ${JwtService.getAccessToken()}`;
-    Vue.axios.defaults.headers.common["Accept"] = 'application/json';
+    Vue.axios.defaults.headers.common["Accept"] = "application/json";
   },
 
   query(resource, params) {
@@ -97,7 +97,7 @@ const ApiService = {
     return Vue.axios.post(`${resource}`, params).catch(error => {
       throw new Error(`[RWV] ApiService ${error}`);
     });
-  },
+  }
 };
 
 export default ApiService;
@@ -112,11 +112,26 @@ export const UserService = {
 };
 
 export const KelasService = {
+  create(kelasRequest) {
+    return ApiService.securedPost("/kelas/create", kelasRequest);
+  },
+  delete(detailKelasRequest) {
+    return ApiService.securedPost("/kelas/delete", detailKelasRequest);
+  },
+  update(daftarKelasRequest) {
+    return ApiService.securedPost("/kelas/update", daftarKelasRequest);
+  },
   getDetailKelas(detailKelasRequest) {
     return ApiService.securedPost("kelas/detail", detailKelasRequest);
   },
   getPesertaKelas(pesertaKelasRequest) {
     return ApiService.securedPost("kelas/mahasiswa/list", pesertaKelasRequest);
+  },
+  getMatakuliahList(daftarMatakuliahRequest) {
+    return ApiService.securedPost("/matakuliah/list", daftarMatakuliahRequest);
+  },
+  getDosenList(daftarDosenRequest) {
+    return ApiService.securedPost("/dosen/prodi", daftarDosenRequest);
   }
 };
 
@@ -127,8 +142,11 @@ export const PengumumanService = {
   delete(idPengumuman) {
     return ApiService.securedPost("/pengumuman/delete", idPengumuman);
   },
-  update(daftarPengumumanRequest){
-    return ApiService.securedPost("/pengumuman/update", daftarPengumumanRequest);
+  update(daftarPengumumanRequest) {
+    return ApiService.securedPost(
+      "/pengumuman/update",
+      daftarPengumumanRequest
+    );
   },
   getDaftarPengumuman(daftarPengumumanRequest) {
     return ApiService.securedPost("/pengumuman/list", daftarPengumumanRequest);
@@ -142,7 +160,7 @@ export const KegiatanService = {
   delete(idKegiatan) {
     return ApiService.securedPost("/kegiatan/delete", idKegiatan);
   },
-  update(daftarKegiatanRequest){
+  update(daftarKegiatanRequest) {
     return ApiService.securedPost("/kegiatan/update", daftarKegiatanRequest);
   },
   getDaftarKegiatan(daftarKegiatanRequest) {
