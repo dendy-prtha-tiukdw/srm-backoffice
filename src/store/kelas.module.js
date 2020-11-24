@@ -79,9 +79,9 @@ const actions = {
     });
   },
   [KELAS_DELETE]({ commit, state }) {
-    console.log(state.kelas);
+    console.log(state.detailKelas);
     return new Promise(resolve => {
-      KelasService.delete(state.kelas)
+      KelasService.delete(state.detailKelas)
         .then(({ data }) => {
           resolve(data);
         })

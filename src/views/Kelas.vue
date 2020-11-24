@@ -50,6 +50,10 @@
         Daftar Kegiatan
       </button>
       &nbsp;&nbsp;&nbsp;
+      <button class="btn btn-info pull-xs-center" @click="onUpdateKelas">
+        Update Kelas
+      </button>
+      &nbsp;&nbsp;&nbsp;
       <button
         class="btn btn-outline-danger btn-warning hapuskelas"
         @click="onHapusKelas"
@@ -169,6 +173,18 @@ export default {
         .catch(({ response }) => {
           this.errors = response.data.errors;
         });
+    },
+    onUpdateKelas() {
+      this.$router.push({
+        isUpdating: true,
+        name: "editkelas",
+        params: {
+          group: this.detailKelas.group,
+          namaMatakuliah: this.detailKelas.namaMatakuliah,
+          semester: this.detailKelas.semester,
+          tahunAjaran: this.detailKelas.tahunAjaran
+        }
+      });
     }
   }
 };
