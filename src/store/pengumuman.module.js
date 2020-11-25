@@ -12,11 +12,12 @@ const initialState = {
   pengumuman: {
     idPengumuman: "",
     group: "",
-    namaMatkul: "",
+    namaMatakuliah: "",
     judulPengumuman: "",
     pengumuman: "",
     semester: "",
-    tahunAjaran: ""
+    tahunAjaran: "",
+    tanggalBerakhir: "",
   },
   listPengumuman: {},
   errors: {}

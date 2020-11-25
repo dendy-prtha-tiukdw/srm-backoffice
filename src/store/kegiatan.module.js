@@ -12,12 +12,13 @@ const initialState = {
   kegiatan: {
     idKegiatan: "",
     group: "",
-    namaMatkul: "",
+    namaMatakuliah: "",
     judulKegiatan: "",
     kegiatan: "",
     semester: "",
     tahunAjaran: "",
-    isComplete: ""
+    isComplete: "",
+    tanggalBerakhir: "",
   },
   listKegiatan: {},
   errors: {}

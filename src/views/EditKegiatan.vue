@@ -92,7 +92,7 @@ export default {
     if (this.$route.params.kegiatan != null) {
       this.isUpdating = this.$route.params.isUpdating;
       this.kegiatan.group = this.$route.params.kegiatan.group;
-      this.kegiatan.namaMatkul = this.$route.params.kegiatan.namaMatakuliah;
+      this.kegiatan.namaMatakuliah = this.$route.params.kegiatan.namaMatakuliah;
       this.kegiatan.semester = this.$route.params.kegiatan.semester;
       this.kegiatan.tahunAjaran = this.$route.params.kegiatan.tahunAjaran;
       this.kegiatan.idKegiatan = this.$route.params.kegiatan.idKegiatan;
@@ -102,6 +102,8 @@ export default {
       this.kegiatan.tanggalDibuat = this.$route.params.kegiatan.tanggalDibuat;
       this.kegiatan.isComplete = this.$route.params.kegiatan.isComplete;
       this.isComplete = this.kegiatan.isComplete == "true" ? true : false;
+      console.log(this.kegiatan)
+      console.log(this.$route.params.kegiatan)
       // console.log(typeof(this.isComplete));
       // console.log( this.$route.params.kegiatan.isComplete);
     }
@@ -120,12 +122,12 @@ export default {
             name: "daftarkegiatan",
             params: {
               group: this.kegiatan.group,
-              namaMatakuliah: this.kegiatan.namaMatkul,
+              namaMatakuliah: this.kegiatan.namaMatakuliah,
               semester: this.kegiatan.semester,
               tahunAjaran: this.kegiatan.tahunAjaran,
               tanggalBerakhir: this.kegiatan.tanggalBerakhir,
               tanggalDibuat: this.kegiatan.tanggalDibuat,
-              isComplete: this.kegiatan.isComplete
+              isComplete: this.kegiatan.isComplete,
             }
           });
         })
@@ -142,7 +144,7 @@ export default {
             name: "daftarkegiatan",
             params: {
               group: this.kegiatan.group,
-              namaMatakuliah: this.kegiatan.namaMatkul,
+              namaMatakuliah: this.kegiatan.namaMatakuliah,
               semester: this.kegiatan.semester,
               tahunAjaran: this.kegiatan.tahunAjaran
             }
