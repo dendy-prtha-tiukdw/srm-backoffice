@@ -50,9 +50,13 @@
         Daftar Kegiatan
       </button>
       &nbsp;&nbsp;&nbsp;
-      <button class="btn btn-info pull-xs-center" @click="onUpdateKelas">
-        Update Kelas
-      </button>
+      <RwvRouteUpdate
+        :routeName="'editkelas'"
+        :data="{
+          isUpdating: true,
+          detailKelas: detailKelas
+        }"
+      />
       &nbsp;&nbsp;&nbsp;
       <button
         class="btn btn-outline-danger btn-warning hapuskelas"
@@ -90,6 +94,7 @@ import {
   FETCH_PESERTA_KELAS,
   KELAS_DELETE
 } from "@/store/actions.type";
+import RwvRouteUpdate from "@/components/RouteUpdate";
 
 export default {
   name: "kelas",
@@ -100,7 +105,7 @@ export default {
     tahunAjaran: String
   },
 
-  components: {},
+  components: { RwvRouteUpdate },
   created() {},
   beforeRouteEnter(to, from, next) {
     //console.log("before route on kelas ");

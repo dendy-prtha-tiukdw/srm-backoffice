@@ -31,6 +31,23 @@ const state = {
     sesi: "",
     tahunAjaran: ""
   },
+  updateKelas: {
+    newData: {
+      group: "",
+      hari: "",
+      namaMatakuliah: "",
+      nik: [""],
+      semester: "",
+      sesi: "",
+      tahunAjaran: ""
+    },
+    request: {
+      group: "",
+      namaMatakuliah: "",
+      semester: "",
+      tahunAjaran: ""
+    }
+  },
   matakuliah: {
     prodi: "Informatika"
   },
@@ -62,6 +79,9 @@ const getters = {
   },
   pesertaKelas(state) {
     return state.pesertaKelas;
+  },
+  updateKelas(state) {
+    return state.updateKelas;
   }
 };
 
@@ -92,9 +112,9 @@ const actions = {
     });
   },
   [KELAS_UPDATE]({ commit, state }) {
-    console.log(state.kelas);
+    console.log(state.updateKelas);
     return new Promise(resolve => {
-      KelasService.update(state.kelas, state.matakuliah)
+      KelasService.update(state.updateKelas, state.matakuliah)
         .then(({ data }) => {
           resolve(data);
         })
@@ -200,6 +220,27 @@ const mutations = {
     state.kelas.pengumuman = "";
     state.kelas.semester = "";
     state.kelas.tahunAjaran = "";
+    state.kelas.hari = "";
+    state.kelas.nik = [];
+    state.kelas.sesi = "";
+    // state.errors = {};
+    // state.detailKelas = [];
+    // state.pesertaKelas = [];
+    // state.updateKelas.newData.group = "" 
+    // state.updateKelas.newData.hari = "" 
+    // state.updateKelas.newData.namaMatakuliah = "" 
+    // state.updateKelas.newData.nik = [""]
+    // state.updateKelas.newData.semester = "" 
+    // state.updateKelas.newData.sesi = "" 
+    // state.updateKelas.newData.tahunAjaran = "" 
+    // state.updateKelas.request.group = "" 
+    // state.updateKelas.request.namaMatakuliah = "" 
+    // state.updateKelas.request.semester = "" 
+    // state.updateKelas.request.tahunAjaran = "" 
+    // state.matakuliah.prodi = "Informatika"
+    // state.listMatakuliah = {}
+    // state.dosen.prodi = "Informatika"
+    // state.listDosen = {}
   }
 };
 

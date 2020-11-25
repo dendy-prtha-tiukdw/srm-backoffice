@@ -81,6 +81,7 @@
                   filled
                   label="Semester"
                 ></v-combobox>
+                ,
               </div>
               <!-- Periode -->
             </v-col>
@@ -96,18 +97,10 @@
             </v-col>
           </v-row>
         </v-container>
-        <button class="btn btn-primary mb-n9"
-         @click="onUmumkan">
+        <button class="btn btn-primary mb-n9" @click="onUmumkan">
           Buat Kelas
         </button>
-         &nbsp;&nbsp;&nbsp;
-        <button
-          class="btn btn-outline-info danger btn-warning"
-          v-if="this.isUpdating"
-          @click="onUmumkan"
-        >
-          <i class="ion-trash-a"></i> <span>&nbsp;Update Pengumuman</span>
-        </button>
+        &nbsp;&nbsp;&nbsp;
       </fieldset>
     </div>
   </v-app>
@@ -118,7 +111,7 @@
 import {
   KELAS_CREATE,
   KELAS_UPDATE,
-  KELAS_RESET_STATE,
+  KELAS_RESET_STATE
 } from "@/store/actions.type";
 import { mapGetters } from "vuex";
 import store from "@/store";
@@ -144,10 +137,6 @@ export default {
       errors: {}
     };
   },
-  async beforeRouteLeave(to, from, next) {
-    await store.dispatch(KELAS_RESET_STATE);
-    next();
-  },
   mounted() {
     // console.log(this.$route.params.id);
     // console.log(this.$route.params);
@@ -155,24 +144,42 @@ export default {
 
     this.isUpdating = this.$route.params.isUpdating;
   },
+  async created () {
+    await store.dispatch(KELAS_RESET_STATE);
+  },
   methods: {
+    setData() {
+      this.updateKelas.newData.group = this.kelas.group;
+      this.updateKelas.newData.hari = this.kelas.hari;
+      this.updateKelas.newData.namaMatakuliah = this.kelas.namaMatakuliah;
+      this.updateKelas.newData.nik = this.kelas.nik;
+      this.updateKelas.newData.semester = this.kelas.semester;
+      this.updateKelas.newData.sesi = this.kelas.sesi;
+      this.updateKelas.newData.tahunAjaran = this.kelas.tahunAjaran;
+      this.updateKelas.newData.group = this.kelas.group;
+
+      this.updateKelas.request.group = this.$route.params.detailKelas.group;
+      this.updateKelas.request.namaMatakuliah = this.$route.params.detailKelas.namaMatakuliah;
+      this.updateKelas.request.semester = this.$route.params.detailKelas.semester;
+      this.updateKelas.request.tahunAjaran = this.$route.params.detailKelas.tahunAjaran;
+      console.log(this.kelas)
+      console.log(this.$route.params.detailKelas)
+      console.log(this.updateKelas)
+    },
     onUmumkan() {
       let action = this.isUpdating ? KELAS_UPDATE : KELAS_CREATE;
+      if (this.isUpdating) this.setData();
       this.$store
         .dispatch(action)
-        .then(({ data }) => {
-          console.log(data);
+        .then(() => {
           this.$router.push({
-            name: "daftarkelas",
+            name: "daftarkelas"
           });
         })
         .catch(({ response }) => {
           this.errors = response.data.errors;
         });
     }
-    // tambahNikDosen(){
-    //   this.kelas.nik.push({ value: '' });
-    // },
   },
 
   computed: {
@@ -183,7 +190,7 @@ export default {
       "daftarMatakuliah",
       "daftarDosen",
       "isAuthenticated",
-      "updateKelas",
+      "updateKelas"
     ])
   }
 };
