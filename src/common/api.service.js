@@ -103,11 +103,11 @@ const ApiService = {
 export default ApiService;
 
 export const UserService = {
-  getDaftarKelas() {
-    return ApiService.securedGet("user/kelas");
-  },
   getUserProfile(profileRequest) {
     return ApiService.securedPost("user/profile", profileRequest);
+  },
+  signUp() {
+    return ApiService.securedPost("auth/signup");
   }
 };
 
@@ -132,6 +132,9 @@ export const KelasService = {
   },
   getDosenList(daftarDosenRequest) {
     return ApiService.securedPost("/dosen/prodi", daftarDosenRequest);
+  },
+  getDaftarKelas(listKelasRequest) {
+    return ApiService.securedPost("kelas/all", listKelasRequest);
   }
 };
 

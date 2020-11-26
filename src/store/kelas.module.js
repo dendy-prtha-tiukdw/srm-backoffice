@@ -1,5 +1,6 @@
 import { KelasService } from "@/common/api.service";
 import {
+  FETCH_DAFTAR_KELAS,
   FETCH_DAFTAR_DOSEN,
   FETCH_DAFTAR_MATAKULIAH,
   FETCH_DETAIL_KELAS,
@@ -7,9 +8,11 @@ import {
   KELAS_CREATE,
   KELAS_DELETE,
   KELAS_RESET_STATE,
-  KELAS_UPDATE
+  KELAS_UPDATE,
+  DAFTAR_KELAS
 } from "./actions.type";
 import {
+  SET_DAFTAR_KELAS,
   SET_DETAIL_KELAS,
   SET_PESERTA_KELAS,
   SET_ERROR,
@@ -21,6 +24,11 @@ import {
 const state = {
   errors: {},
   detailKelas: [],
+  daftarKelas:[],
+  listKelas:{
+    semester: "",
+    tahunAjaran: ""
+  },
   pesertaKelas: [],
   kelas: {
     group: "",
@@ -51,14 +59,20 @@ const state = {
   matakuliah: {
     prodi: "Informatika"
   },
-  listMatakuliah: {},
   dosen: {
     prodi: "Informatika"
   },
-  listDosen: {}
+  listDosen: {},
+  listMatakuliah: {},
 };
 
 const getters = {
+  daftarKelas(state) {
+    return state.daftarKelas;
+  },
+  listKelas(state) {
+    return state.listKelas;
+  },
   matakuliah(state) {
     return state.matakuliah;
   },
@@ -86,6 +100,20 @@ const getters = {
 };
 
 const actions = {
+  [FETCH_DAFTAR_KELAS]({ commit, state }) {
+    // console.log("FETCH_DAFTAR_KELAS");
+    return new Promise((resolve, reject) => {
+      KelasService.getDaftarKelas(state.listKelas)
+        .then(({ data }) => {
+          commit(SET_DAFTAR_KELAS, data.data);
+          resolve(data);
+        })
+        .catch(({ response }) => {
+          commit(SET_ERROR, response.data.errors);
+          reject(response);
+        });
+    });
+  },
   [KELAS_CREATE]({ commit, state }) {
     return new Promise(resolve => {
       KelasService.create(state.kelas, state.matakuliah)
@@ -180,6 +208,19 @@ const actions = {
         });
     });
   },
+  [DAFTAR_KELAS](context, dosenList) {
+    return new Promise((resolve, reject) => {
+      KelasService.getDaftarKelas(dosenList)
+        .then(({ data }) => {
+          context.commit(SET_LIST_DOSEN, data);
+          resolve(data);
+        })
+        .catch(({ response }) => {
+          context.commit(SET_ERROR, response.data.errors);
+          reject(response);
+        });
+    });
+  },
   [KELAS_RESET_STATE]({ commit }) {
     commit(RESET_STATE);
   }
@@ -197,6 +238,12 @@ const mutations = {
   },
   [SET_PESERTA_KELAS](state, pesertaKelas) {
     state.pesertaKelas = pesertaKelas.data;
+    // console.log("SET_PESERTA_KELAS");
+    // console.log(state.pesertaKelas);
+    state.errors = {};
+  },
+  [SET_DAFTAR_KELAS](state, daftarKelas) {
+    state.daftarKelas = daftarKelas.data;
     // console.log("SET_PESERTA_KELAS");
     // console.log(state.pesertaKelas);
     state.errors = {};
@@ -226,17 +273,17 @@ const mutations = {
     // state.errors = {};
     // state.detailKelas = [];
     // state.pesertaKelas = [];
-    // state.updateKelas.newData.group = "" 
-    // state.updateKelas.newData.hari = "" 
-    // state.updateKelas.newData.namaMatakuliah = "" 
+    // state.updateKelas.newData.group = ""
+    // state.updateKelas.newData.hari = ""
+    // state.updateKelas.newData.namaMatakuliah = ""
     // state.updateKelas.newData.nik = [""]
-    // state.updateKelas.newData.semester = "" 
-    // state.updateKelas.newData.sesi = "" 
-    // state.updateKelas.newData.tahunAjaran = "" 
-    // state.updateKelas.request.group = "" 
-    // state.updateKelas.request.namaMatakuliah = "" 
-    // state.updateKelas.request.semester = "" 
-    // state.updateKelas.request.tahunAjaran = "" 
+    // state.updateKelas.newData.semester = ""
+    // state.updateKelas.newData.sesi = ""
+    // state.updateKelas.newData.tahunAjaran = ""
+    // state.updateKelas.request.group = ""
+    // state.updateKelas.request.namaMatakuliah = ""
+    // state.updateKelas.request.semester = ""
+    // state.updateKelas.request.tahunAjaran = ""
     // state.matakuliah.prodi = "Informatika"
     // state.listMatakuliah = {}
     // state.dosen.prodi = "Informatika"

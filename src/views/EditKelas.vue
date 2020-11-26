@@ -144,7 +144,7 @@ export default {
 
     this.isUpdating = this.$route.params.isUpdating;
   },
-  async created () {
+  async created() {
     await store.dispatch(KELAS_RESET_STATE);
   },
   methods: {
@@ -162,9 +162,9 @@ export default {
       this.updateKelas.request.namaMatakuliah = this.$route.params.detailKelas.namaMatakuliah;
       this.updateKelas.request.semester = this.$route.params.detailKelas.semester;
       this.updateKelas.request.tahunAjaran = this.$route.params.detailKelas.tahunAjaran;
-      console.log(this.kelas)
-      console.log(this.$route.params.detailKelas)
-      console.log(this.updateKelas)
+      console.log(this.kelas);
+      console.log(this.$route.params.detailKelas);
+      console.log(this.updateKelas);
     },
     onUmumkan() {
       let action = this.isUpdating ? KELAS_UPDATE : KELAS_CREATE;
@@ -179,7 +179,8 @@ export default {
         .catch(({ response }) => {
           this.errors = response.data.errors;
         });
-    }
+    },
+    
   },
 
   computed: {
