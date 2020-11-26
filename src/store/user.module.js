@@ -1,68 +1,47 @@
 import { UserService } from "@/common/api.service";
-import { FETCH_DAFTAR_KELAS } from "./actions.type";
 import { SET_DAFTAR_KELAS } from "./mutations.type";
 import { FETCH_PROFILE } from "./actions.type";
 import { SET_PROFILE } from "./mutations.type";
 /* eslint-disable no-console */
 const state = {
   errors: {},
-  daftarkelas: [],
-  profile: [] 
+  profile: []
 };
 
 const getters = {
-  daftarKelas(state) {
-    return state.daftarkelas;
-  },
-  profile(state){
+  profile(state) {
     return state.profile;
-  },
+  }
 };
 
 const actions = {
-  [FETCH_DAFTAR_KELAS]({ commit }) {
-    // console.log("FETCH_DAFTAR_KELAS");
-    return UserService.getDaftarKelas()
-      .then(({ data }) => {
-        if (data != null) {
-          // console.log(data);
-          commit(SET_DAFTAR_KELAS, data);
-        } else {
-          //todo handle exception
-        }
-      })
-      .catch(error => {
-        throw new Error(error);
-      });
-  },
-  [FETCH_PROFILE] (context, idToken) {
+  [FETCH_PROFILE](context, idToken) {
     return new Promise(resolve => {
       console.log(idToken);
       // const profileRequest = {
       //   idToken: 'idToken',
       // };
-      return UserService.getUserProfile(idToken)
-      .then(({ data }) => {
-        console.log(data, 'Return Data')
+      return UserService.getUserProfile(idToken).then(({ data }) => {
+        console.log(data, "Return Data");
         console.log(data.data);
-          // if (
-          //   data.data.role == "ROLE_DOSEN" ||
-          //   data.data.role == "ROLE_STAFF"
-          // ) {
-            context.commit(SET_PROFILE, data);
-            resolve(data);
-          // } else {
-          //   console.log("role unauthorize");
-          //   context.commit(SET_ERROR, "role unauthorize");
-          // }
-      })
-    })
-  },
+        // if (
+        //   data.data.role == "ROLE_DOSEN" ||
+        //   data.data.role == "ROLE_STAFF"
+        // ) {
+        context.commit(SET_PROFILE, data);
+        resolve(data);
+        // } else {
+        //   console.log("role unauthorize");
+        //   context.commit(SET_ERROR, "role unauthorize");
+        // }
+      });
+    });
+  }
 };
 
 const mutations = {
-  [SET_DAFTAR_KELAS](state, daftarkelas) {
-    state.daftarkelas = daftarkelas.data;
+  [SET_DAFTAR_KELAS](state, listKelas) {
+    state.listKelas = listKelas.data;
     // console.log("SET_DAFTAR_KELAS");
     // console.log(state.daftarkelas);
     state.errors = {};
