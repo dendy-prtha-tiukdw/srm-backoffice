@@ -11,7 +11,7 @@
               solo
             ></v-text-field>
           </v-col>
-          <v-col cols="12" sm="1" md="2">
+          <v-col cols="12" sm="3" md="2">
             <v-text-field
               label="Tahun Ajaran"
               v-model="listKelas.tahunAjaran"
@@ -38,11 +38,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(kelas,idx) in listOfKelas" v-bind:key="idx">
-          <td>{{ kelas.namaMatakuliah}}</td>
+        <tr v-for="(kelas, idx) in listOfKelas" v-bind:key="idx">
+          <td>{{ kelas.namaMatakuliah }}</td>
           <td>{{ kelas.group }}</td>
           <td>{{ kelas.hari }}</td>
-          <td>{{ kelas.jam }}</td>
+          <td>{{ kelas.sesi }}</td>
           <RwvRouteTableItem
             :routeName="'kelas'"
             :data="{
@@ -74,10 +74,10 @@ export default {
   components: {
     RwvRouteTableItem
   },
-  data(){
+  data() {
     return {
       listOfKelas: {}
-    }
+    };
   },
   methods: {
     handleClickTambahKelas() {
@@ -101,8 +101,8 @@ export default {
       this.$store
         .dispatch(FETCH_DAFTAR_KELAS)
         .then(({ data }) => {
-          console.log(data)
-          this.listOfKelas = data
+          console.log(data);
+          this.listOfKelas = data;
         })
         .catch(({ response }) => {
           this.errors = response.data.errors;
