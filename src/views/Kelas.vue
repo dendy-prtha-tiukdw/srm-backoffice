@@ -50,6 +50,14 @@
         Daftar Kegiatan
       </button>
       &nbsp;&nbsp;&nbsp;
+      <RwvRouteUpdate
+        :routeName="'editkelas'"
+        :data="{
+          isUpdating: true,
+          detailKelas: detailKelas
+        }"
+      />
+      &nbsp;&nbsp;&nbsp;
       <button
         class="btn btn-outline-danger btn-warning hapuskelas"
         @click="onHapusKelas"
@@ -86,6 +94,7 @@ import {
   FETCH_PESERTA_KELAS,
   KELAS_DELETE
 } from "@/store/actions.type";
+import RwvRouteUpdate from "@/components/RouteUpdate";
 
 export default {
   name: "kelas",
@@ -96,7 +105,7 @@ export default {
     tahunAjaran: String
   },
 
-  components: {},
+  components: { RwvRouteUpdate },
   created() {},
   beforeRouteEnter(to, from, next) {
     //console.log("before route on kelas ");
@@ -169,6 +178,18 @@ export default {
         .catch(({ response }) => {
           this.errors = response.data.errors;
         });
+    },
+    onUpdateKelas() {
+      this.$router.push({
+        isUpdating: true,
+        name: "editkelas",
+        params: {
+          group: this.detailKelas.group,
+          namaMatakuliah: this.detailKelas.namaMatakuliah,
+          semester: this.detailKelas.semester,
+          tahunAjaran: this.detailKelas.tahunAjaran
+        }
+      });
     }
   }
 };

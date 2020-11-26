@@ -1,5 +1,31 @@
 <template>
   <div class="col-md-9">
+    <h2>Pilih Semester & Tahun Ajaran</h2>
+    <v-container fluid>
+      <div class="mb-n9">
+        <v-row>
+          <v-col cols="12" sm="1" md="2">
+            <v-text-field
+              label="Semester"
+              v-model="listKelas.semester"
+              solo
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" sm="1" md="2">
+            <v-text-field
+              label="Tahun Ajaran"
+              v-model="listKelas.tahunAjaran"
+              solo
+            ></v-text-field>
+          </v-col>
+          <v-col>
+            <v-btn color="warning" @click="handleViewKelas" dark>
+              Submit
+            </v-btn>
+          </v-col>
+        </v-row>
+      </div>
+    </v-container>
     DAFTAR KELAS
     <table class="table">
       <thead>
@@ -12,8 +38,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="kelas in daftarKelas" v-bind:key="kelas.namaMatakuliah">
-          <td>{{ kelas.namaMatakuliah }}</td>
+        <tr v-for="(kelas,idx) in listOfKelas" v-bind:key="idx">
+          <td>{{ kelas.namaMatakuliah}}</td>
           <td>{{ kelas.group }}</td>
           <td>{{ kelas.hari }}</td>
           <td>{{ kelas.jam }}</td>
@@ -45,11 +71,13 @@ import { mapGetters, mapState } from "vuex";
 
 export default {
   name: "daftarkelas",
-  mounted() {
-    this.$store.dispatch(FETCH_DAFTAR_KELAS);
-  },
   components: {
     RwvRouteTableItem
+  },
+  data(){
+    return {
+      listOfKelas: {}
+    }
   },
   methods: {
     handleClickTambahKelas() {
@@ -68,13 +96,24 @@ export default {
           }
         }
       });
+    },
+    handleViewKelas() {
+      this.$store
+        .dispatch(FETCH_DAFTAR_KELAS)
+        .then(({ data }) => {
+          console.log(data)
+          this.listOfKelas = data
+        })
+        .catch(({ response }) => {
+          this.errors = response.data.errors;
+        });
     }
   },
   computed: {
     ...mapState({
       errors: state => state.auth.errors
     }),
-    ...mapGetters(["daftarKelas", "isAuthenticated"])
+    ...mapGetters(["listKelas", "daftarKelas", "kelas", "isAuthenticated"])
   }
 };
 </script>
