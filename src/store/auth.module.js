@@ -137,19 +137,6 @@ const actions = {
       return data;
     });
   }
-  // [DAFTAR_KELAS](context, semester, tahunAjaran) {
-  //   return new Promise(resolve => {
-  //     const kelasRequest = {
-  //       semester: semester,
-  //       tahunAjaran: tahunAjaran
-  //     };
-  //     ApiService.post("kelas/all", kelasRequest).then(({ data }) => {
-  //       context.commit(SET_AUTH, data);
-  //       console.log("success");
-  //       resolve(data);
-  //     });
-  //   });
-  // }
 };
 
 const mutations = {
