@@ -105,9 +105,12 @@ export default ApiService;
 export const UserService = {
   getUserProfile(profileRequest) {
     return ApiService.securedPost("user/profile", profileRequest);
-  },
-  signUp() {
-    return ApiService.securedPost("auth/signup");
+  }
+};
+
+export const AuthService = {
+  signUp(signupRequest) {
+    return ApiService.securedPost("auth/signup", signupRequest);
   }
 };
 
@@ -126,6 +129,15 @@ export const KelasService = {
   },
   getPesertaKelas(pesertaKelasRequest) {
     return ApiService.securedPost("kelas/mahasiswa/list", pesertaKelasRequest);
+  },
+  deletePesertaKelas(pesertaKelasRequest) {
+    return ApiService.securedPost(
+      "kelas/mahasiswa/delete",
+      pesertaKelasRequest
+    );
+  },
+  savePesertaKelas(pesertaKelasRequest) {
+    return ApiService.securedPost("kelas/mahasiswa/save", pesertaKelasRequest);
   },
   getMatakuliahList(daftarMatakuliahRequest) {
     return ApiService.securedPost("/matakuliah/list", daftarMatakuliahRequest);

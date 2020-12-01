@@ -78,8 +78,19 @@
         <tr v-for="mahasiswa in pesertaKelas" v-bind:key="mahasiswa.nim">
           <td>{{ mahasiswa.nim }}</td>
           <td>{{ mahasiswa.nama }}</td>
+          <td>
+            <button
+              class="btn btn-outline-danger btn-warning hapuskelas"
+              @click="onHapusPeserta(mahasiswa.nim)"
+            >
+              <i class="ion-trash-a"></i> <span>&nbsp;Hapus</span>
+            </button>
+          </td>
         </tr>
       </tbody>
+      <button class="btn btn-info pull-xs-center" @click="onCreatePeserta">
+        Tambah Mahasiswa
+      </button>
     </table>
   </div>
 </template>
@@ -92,7 +103,8 @@ import store from "@/store";
 import {
   FETCH_DETAIL_KELAS,
   FETCH_PESERTA_KELAS,
-  KELAS_DELETE
+  KELAS_DELETE,
+  PESERTA_KELAS_DELETE
 } from "@/store/actions.type";
 import RwvRouteUpdate from "@/components/RouteUpdate";
 
@@ -115,6 +127,7 @@ export default {
       semester: to.params.semester,
       tahunAjaran: to.params.tahunAjaran
     };
+
     Promise.all([
       //pProup, pNamaMatakuliah, pSemester, pTahunAjaran
       store.dispatch(FETCH_DETAIL_KELAS, detailKelasRequest),
@@ -130,6 +143,8 @@ export default {
     ...mapGetters([
       "detailKelas",
       "pesertaKelas",
+      "deletePeserta",
+      "createPeserta",
       "currentUser",
       "isAuthenticated"
     ])
@@ -190,6 +205,43 @@ export default {
           tahunAjaran: this.detailKelas.tahunAjaran
         }
       });
+    },
+    onCreatePeserta() {
+      this.$router.push({
+        isUpdating: true,
+        name: "editpeserta",
+        params: {
+          group: this.detailKelas.group,
+          namaMatakuliah: this.detailKelas.namaMatakuliah,
+          semester: this.detailKelas.semester,
+          tahunAjaran: this.detailKelas.tahunAjaran
+        }
+      });
+    },
+    onHapusPeserta(nimPeserta) {
+      const pesertaRequest = {
+        namaMatakuliah: this.detailKelas.namaMatakuliah,
+        nim: nimPeserta,
+        semester: this.detailKelas.semester,
+        tahunAjaran: this.detailKelas.tahunAjaran
+      };
+      console.log(pesertaRequest);
+      let detailKelasRequest = {
+      group: this.$route.params.group,
+      namaMatakuliah: this.$route.params.namaMatakuliah,
+      semester: this.$route.params.semester,
+      tahunAjaran: this.$route.params.tahunAjaran,
+    };
+      this.$store
+        .dispatch(PESERTA_KELAS_DELETE, pesertaRequest)
+        .then(() => {
+            //pProup, pNamaMatakuliah, pSemester, pTahunAjaran
+            store.dispatch(FETCH_DETAIL_KELAS, detailKelasRequest),
+            store.dispatch(FETCH_PESERTA_KELAS, detailKelasRequest)
+        })
+        .catch(({ response }) => {
+          this.errors = response.data.errors;
+        });
     }
   }
 };

@@ -5,9 +5,12 @@ import {
   FETCH_DAFTAR_MATAKULIAH,
   FETCH_DETAIL_KELAS,
   FETCH_PESERTA_KELAS,
+  PESERTA_KELAS_CREATE,
+  PESERTA_KELAS_DELETE,
   KELAS_CREATE,
   KELAS_DELETE,
   KELAS_RESET_STATE,
+  PESERTA_RESET_STATE,
   KELAS_UPDATE,
   DAFTAR_KELAS
 } from "./actions.type";
@@ -24,12 +27,25 @@ import {
 const state = {
   errors: {},
   detailKelas: [],
-  daftarKelas:[],
-  listKelas:{
+  daftarKelas: [],
+  listKelas: {
     semester: "",
     tahunAjaran: ""
   },
   pesertaKelas: [],
+  createPeserta: {
+    group: "",
+    namaMatakuliah: "",
+    nim: "",
+    semester: "",
+    tahunAjaran: ""
+  },
+  deletePeserta: {
+    namaMatakuliah: "",
+    nim: "",
+    semester: "",
+    tahunAjaran: ""
+  },
   kelas: {
     group: "",
     hari: "",
@@ -63,7 +79,7 @@ const state = {
     prodi: "Informatika"
   },
   listDosen: {},
-  listMatakuliah: {},
+  listMatakuliah: {}
 };
 
 const getters = {
@@ -93,6 +109,12 @@ const getters = {
   },
   pesertaKelas(state) {
     return state.pesertaKelas;
+  },
+  createPeserta(state) {
+    return state.createPeserta;
+  },
+  deletePeserta(state) {
+    return state.deletePeserta;
   },
   updateKelas(state) {
     return state.updateKelas;
@@ -182,6 +204,30 @@ const actions = {
         });
     });
   },
+  [PESERTA_KELAS_CREATE]({ commit, state }) {
+    return new Promise(resolve => {
+      KelasService.savePesertaKelas(state.createPeserta)
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(({ response }) => {
+          console.log(response);
+          commit(SET_ERROR, response.data.errors);
+        });
+    });
+  },
+  [PESERTA_KELAS_DELETE]({ commit }, dataHapus ) {
+    return new Promise(resolve => {
+      KelasService.deletePesertaKelas(dataHapus)
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(({ response }) => {
+          console.log(response);
+          commit(SET_ERROR, response.data.errors);
+        });
+    });
+  },
   [FETCH_DAFTAR_MATAKULIAH](context, matakuliahList) {
     return new Promise((resolve, reject) => {
       KelasService.getMatakuliahList(matakuliahList)
@@ -220,6 +266,9 @@ const actions = {
           reject(response);
         });
     });
+  },
+  [PESERTA_RESET_STATE]({ commit }) {
+    commit(RESET_STATE);
   },
   [KELAS_RESET_STATE]({ commit }) {
     commit(RESET_STATE);
