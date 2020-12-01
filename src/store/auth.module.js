@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import ApiService from "@/common/api.service";
 import JwtService from "@/common/jwt.service";
+import { AuthService } from "@/common/api.service";
 
 import {
   LOGIN,
@@ -8,14 +9,19 @@ import {
   REGISTER,
   CHECK_AUTH,
   UPDATE_USER,
-  DAFTAR_KELAS
+  SIGN_UP,
 } from "./actions.type";
 import { SET_AUTH, PURGE_AUTH, SET_ERROR } from "./mutations.type";
 
 const state = {
   errors: null,
   user: {},
-  isAuthenticated: !!JwtService.getRefreshToken()
+  isAuthenticated: !!JwtService.getRefreshToken(),
+  signup: {
+    email: "",
+    nomorInduk: "",
+    role: ""
+  }
 };
 
 const getters = {
@@ -34,6 +40,9 @@ const getters = {
   },
   isAuthenticated(state) {
     return state.isAuthenticated;
+  },
+  signup(state){
+    return state.signup;
   }
 };
 
@@ -67,6 +76,18 @@ const actions = {
   },
   [LOGOUT](context) {
     context.commit(PURGE_AUTH);
+  },
+  [SIGN_UP]({ commit, state }) {
+    return new Promise(resolve => {
+      AuthService.signUp(state.signup)
+        .then(({ data }) => {
+          resolve(data);
+        })
+        .catch(({ response }) => {
+          console.log(response);
+          commit(SET_ERROR, response.data.errors);
+        });
+    });
   },
   [REGISTER](context, credentials) {
     return new Promise((resolve, reject) => {
@@ -114,19 +135,6 @@ const actions = {
     return ApiService.put("user", user).then(({ data }) => {
       context.commit(SET_AUTH, data.user);
       return data;
-    });
-  },
-  [DAFTAR_KELAS](context, semester, tahunAjaran) {
-    return new Promise(resolve => {
-      const kelasRequest = {
-        semester: semester,
-        tahunAjaran: tahunAjaran
-      };
-      ApiService.post("kelas/all", kelasRequest).then(({ data }) => {
-        context.commit(SET_AUTH, data);
-        console.log("success");
-        resolve(data);
-      });
     });
   }
 };

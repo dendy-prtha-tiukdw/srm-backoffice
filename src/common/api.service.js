@@ -106,10 +106,13 @@ export const UserService = {
   getUserProfile(profileRequest) {
     return ApiService.securedPost("user/profile", profileRequest);
   },
-  signUp() {
-    return ApiService.securedPost("auth/signup");
-  }
 };
+
+export const AuthService = {
+  signUp(signupRequest) {
+    return ApiService.securedPost("auth/signup", signupRequest);
+  },
+}
 
 export const KelasService = {
   create(kelasRequest) {

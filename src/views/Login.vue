@@ -11,6 +11,12 @@
           >
             Sign in Using Google
           </button>
+          <button
+            class="btn btn-lg btn-primary pull-xs-center"
+            @click="handleSignup"
+          >
+            Sign Up
+          </button>
         </div>
       </div>
     </div>
@@ -53,6 +59,11 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    handleSignup() {
+      this.$router.push({
+        name: "signup"
+      });
     }
   },
   computed: {
