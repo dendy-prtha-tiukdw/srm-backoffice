@@ -105,12 +105,9 @@ export default ApiService;
 export const UserService = {
   getUserProfile(profileRequest) {
     return ApiService.securedPost("user/profile", profileRequest);
-  }
-};
-
-export const AuthService = {
-  signUp(signupRequest) {
-    return ApiService.securedPost("auth/signup", signupRequest);
+  },
+  signUp() {
+    return ApiService.securedPost("auth/signup");
   }
 };
 
