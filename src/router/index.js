@@ -69,6 +69,12 @@ export default new Router({
       component: () => import("@/views/EditKegiatan")
     },
     {
+      path: "/editpeserta",
+      name: "editpeserta",
+      props: true,
+      component: () => import("@/views/EditPeserta")
+    },
+    {
       path: "/profile",
       name: "profile",
       component: () => import("@/views/Profile")

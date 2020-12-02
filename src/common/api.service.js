@@ -130,6 +130,15 @@ export const KelasService = {
   getPesertaKelas(pesertaKelasRequest) {
     return ApiService.securedPost("kelas/mahasiswa/list", pesertaKelasRequest);
   },
+  deletePesertaKelas(pesertaKelasRequest) {
+    return ApiService.securedPost(
+      "kelas/mahasiswa/delete",
+      pesertaKelasRequest
+    );
+  },
+  savePesertaKelas(pesertaKelasRequest) {
+    return ApiService.securedPost("kelas/mahasiswa/save", pesertaKelasRequest);
+  },
   getMatakuliahList(daftarMatakuliahRequest) {
     return ApiService.securedPost("/matakuliah/list", daftarMatakuliahRequest);
   },
