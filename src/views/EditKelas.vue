@@ -259,20 +259,20 @@ export default {
     };
   },
   mounted() {
-    // console.log(this.$route.params.id);
-    // console.log(this.$route.params);
     console.log(this.kelas);
 
     this.isUpdating = this.$route.params.isUpdating;
   },
   async created() {
     await store.dispatch(KELAS_RESET_STATE);
-    this.kelas.namaMatakuliah = this.$route.params.detailKelas.namaMatakuliah;
-    this.kelas.group = this.$route.params.detailKelas.group;
-    this.kelas.semester = this.$route.params.detailKelas.semester;
-    this.kelas.tahunAjaran = this.$route.params.detailKelas.tahunAjaran;
-    this.kelas.sesi = this.$route.params.detailKelas.sesi;
-    this.kelas.hari = this.$route.params.detailKelas.hari;
+    if (this.$route.params.detailKelas != null) {
+      this.kelas.namaMatakuliah = this.$route.params.detailKelas.namaMatakuliah;
+      this.kelas.group = this.$route.params.detailKelas.group;
+      this.kelas.semester = this.$route.params.detailKelas.semester;
+      this.kelas.tahunAjaran = this.$route.params.detailKelas.tahunAjaran;
+      this.kelas.sesi = this.$route.params.detailKelas.sesi;
+      this.kelas.hari = this.$route.params.detailKelas.hari;
+    }
   },
   methods: {
     setData() {
@@ -360,6 +360,7 @@ export default {
     batalUpdate() {
       this.$router.push({
         name: "kelas"
+          
       });
     },
     batalCreate() {
