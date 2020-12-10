@@ -43,7 +43,7 @@
       </fieldset>
     </fieldset>
     <button class="btn btn-primary" @click="onUmumkan">
-      Umumkan
+      Simpan
     </button>
     &nbsp;&nbsp;&nbsp;
     <button
@@ -102,8 +102,8 @@ export default {
       this.kegiatan.tanggalDibuat = this.$route.params.kegiatan.tanggalDibuat;
       this.kegiatan.isComplete = this.$route.params.kegiatan.isComplete;
       this.isComplete = this.kegiatan.isComplete == "true" ? true : false;
-      console.log(this.kegiatan)
-      console.log(this.$route.params.kegiatan)
+      console.log(this.kegiatan);
+      console.log(this.$route.params.kegiatan);
       // console.log(typeof(this.isComplete));
       // console.log( this.$route.params.kegiatan.isComplete);
     }
@@ -127,7 +127,7 @@ export default {
               tahunAjaran: this.kegiatan.tahunAjaran,
               tanggalBerakhir: this.kegiatan.tanggalBerakhir,
               tanggalDibuat: this.kegiatan.tanggalDibuat,
-              isComplete: this.kegiatan.isComplete,
+              isComplete: this.kegiatan.isComplete
             }
           });
         })

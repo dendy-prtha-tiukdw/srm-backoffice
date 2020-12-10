@@ -1,109 +1,225 @@
 <template>
-  <v-app>
-    <div class="mb-n16 mt-n3 ">
-      <fieldset>
-        <v-container fluid>
-          <v-row>
-            <!-- Nama Matakuliah -->
-            <v-col cols="8">
-              <div class="namaMatakuliah mb-n9">
-                <v-text-field
-                  label="Pilih Matakuliah"
-                  v-model="kelas.namaMatakuliah"
-                  disabled
-                  filled
-                >
-                </v-text-field>
-              </div>
-            </v-col>
-            <!-- Dialog Pilih Matakuliah -->
-            <DialogMatakuliah />
+  <div class="col-9 col-sm-9">
+    <!-- Bagian Matakuliah -->
+    <div class="row">
+      <div class="col-9 col-sm-9">
+        <input
+          type="text"
+          :readonly="true"
+          class="form-control"
+          placeholder="Nama Matakuliah"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          v-model="kelas.namaMatakuliah"
+        />
+      </div>
+      <DialogMatakuliah
+        v-show="isModalMakulVisible"
+        @selectedMatakuliah="closeModalDaftarMakul"
+      />
+      <div class="col-3 col-sm-3">
+        <button class="btn btn-primary btn-block" @click="showModalDaftarMakul">
+          Cari Matakuliah
+        </button>
+      </div>
+    </div>
+    <!-- Bagian Dosen 
+    terdapat 4 dosen yg boleh mengajar dalam 1 kelas-->
+    <div class="row">
+      <div class="col-9 col-sm-9">
+        <input
+          type="text"
+          :readonly="true"
+          class="form-control"
+          placeholder="NIK Dosen 1"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          v-model="kelas.nik[0]"
+        />
+      </div>
+      <DialogDosen
+        v-show="isModalDosen1Visible"
+        @selectedDosen="closeModalDosen1"
+      >
+      </DialogDosen>
+      <div class="col-3 col-sm-3">
+        <button class="btn btn-primary btn-block" @click="showModalDosen1">
+          Cari Dosen
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-sm-9">
+        <input
+          type="text"
+          :readonly="true"
+          class="form-control"
+          placeholder="NIK Dosen 2"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          v-model="kelas.nik[1]"
+        />
+      </div>
+      <DialogDosen
+        v-show="isModalDosen2Visible"
+        @selectedDosen="closeModalDosen2"
+      >
+      </DialogDosen>
+      <div class="col-3 col-sm-3">
+        <button class="btn btn-primary btn-block" @click="showModalDosen2">
+          Cari Dosen
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-sm-9">
+        <input
+          type="text"
+          :readonly="true"
+          class="form-control"
+          placeholder="NIK Dosen 3"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          v-model="kelas.nik[2]"
+        />
+      </div>
+      <DialogDosen
+        v-show="isModalDosen3Visible"
+        @selectedDosen="closeModalDosen3"
+      >
+      </DialogDosen>
+      <div class="col-3 col-sm-3">
+        <button class="btn btn-primary btn-block" @click="showModalDosen3">
+          Cari Dosen
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9 col-sm-9">
+        <input
+          type="text"
+          :readonly="true"
+          class="form-control"
+          placeholder="NIK Dosen 4"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          v-model="kelas.nik[3]"
+        />
+      </div>
+      <DialogDosen
+        v-show="isModalDosen4Visible"
+        @selectedDosen="closeModalDosen4"
+      >
+      </DialogDosen>
+      <div class="col-3 col-sm-3">
+        <button class="btn btn-primary btn-block" @click="showModalDosen4">
+          Cari Dosen
+        </button>
+      </div>
+    </div>
 
-            <!-- ============================ DOSEN ================================ -->
-            <v-row>
-              <!-- Dialog Pilih Dosen -->
-              <DialogDosen />
-            </v-row>
-          </v-row>
+    <div class="row">
+      <div class="col-12 col-sm-12 px-md-5" style="margin-bottom: -30px">
+        <div class="row mx-mb-n5">
+          <div class="col-3 col-sm-3"><span>Hari:</span></div>
+          <div class="col-3 col-sm-3"><span>Sesi:</span></div>
+          <div class="col-3 col-sm-3"><span>Group:</span></div>
+          <div class="col-3 col-sm-3"><span>Semester:</span></div>
+        </div>
+      </div>
+    </div>
 
-          <v-row>
-            <!-- Hari Matakuliah -->
-            <v-col cols="4">
-              <div class="mb-n9">
-                <div class="mr-0">
-                  <v-combobox
-                    v-model="kelas.hari"
-                    :items="hari"
-                    auto-select-first
-                    clearable
-                    filled
-                    label="Pilih Hari Matakuliah"
-                  ></v-combobox>
-                </div>
-              </div>
-            </v-col>
-            <!-- Group Kelas -->
-            <v-col cols="4">
-              <div class="group mb-n9">
-                <v-combobox
-                  v-model="kelas.group"
-                  :items="groups"
-                  clearable
-                  filled
-                  hide-selected
-                  label="Grup Matakuliah"
-                ></v-combobox>
-              </div>
-            </v-col>
-            <!-- Sesi Matakuliah -->
-            <v-col cols="4">
-              <div class="sesi mb-n9">
-                <v-combobox
-                  v-model="kelas.sesi"
-                  :items="sesi"
-                  auto-select-first
-                  clearable
-                  filled
-                  label="Pilih Sesi Matakuliah"
-                ></v-combobox>
-              </div>
-            </v-col>
-          </v-row>
+    <div class="row">
+      <div class="col-3 col-sm-3">
+        <select class="custom-select col-12 w-100" v-model="kelas.hari">
+          <option value="Senin">Senin</option>
+          <option value="Selasa">Selasa</option>
+          <option value="Rabu">Rabu</option>
+          <option value="Kamis">Kamis</option>
+          <option value="Jumat">Jumat</option>
+        </select>
+      </div>
+      <div class="col-3 col-sm-3">
+        <select class="custom-select col-12 w-100" v-model="kelas.sesi">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+      <div class="col-3 col-sm-3">
+        <select class="custom-select col-12 w-100" v-model="kelas.group">
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>
+        </select>
+      </div>
+      <div class="col-3 col-sm-3">
+        <select class="custom-select col-12 w-100" v-model="kelas.semester">
+          <option value="Gasal">Gasal</option>
+          <option value="Genap">Genap</option>
+        </select>
+      </div>
+    </div>
 
-          <v-row>
-            <!-- Semester -->
-            <v-col cols="6">
-              <div class="mb-n9">
-                <v-combobox
-                  v-model="kelas.semester"
-                  :items="semester"
-                  clearable
-                  filled
-                  label="Semester"
-                ></v-combobox>
-                ,
-              </div>
-              <!-- Periode -->
-            </v-col>
-            <v-col cols="6">
-              <div class="mb-n9">
-                <v-text-field
-                  label="Masukan Periode Matakuliah"
-                  v-model="kelas.tahunAjaran"
-                  filled
-                >
-                </v-text-field>
-              </div>
-            </v-col>
-          </v-row>
-        </v-container>
-        <button class="btn btn-primary mb-n9" @click="onUmumkan">
+    <div class="row">
+      <div class="col-12 col-sm-12">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Tahun Ajaran"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          v-model="kelas.tahunAjaran"
+        />
+      </div>
+    </div>
+
+    <div v-if="!isUpdating" class="row">
+      <div class="col-6 col-sm-6">
+        <button
+          type="button"
+          class="btn btn-primary btn-md btn-block"
+          @click="onUmumkan"
+          style="color: white"
+        >
           Buat Kelas
         </button>
-        &nbsp;&nbsp;&nbsp;
-      </fieldset>
+      </div>
+      <div class="col-6 col-sm-6">
+        <button
+          type="button"
+          class="btn btn-danger btn-md btn-block"
+          @click="batalCreate"
+        >
+          Batal
+        </button>
+      </div>
     </div>
-  </v-app>
+
+    <div v-else-if="isUpdating" class="row">
+      <div class="col-6 col-sm-6">
+        <button
+          type="button"
+          class="btn btn-primary btn-md btn-block"
+          @click="onUmumkan"
+          style="color: white"
+        >
+          Update Kelas
+        </button>
+      </div>
+      <div class="col-6 col-sm-6">
+        <button
+          type="button"
+          class="btn btn-danger btn-md btn-block"
+          @click="batalUpdate"
+        >
+          Batal
+        </button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -124,6 +240,11 @@ export default {
   components: { DialogMatakuliah, DialogDosen },
   data() {
     return {
+      isModalMakulVisible: false,
+      isModalDosen1Visible: false,
+      isModalDosen2Visible: false,
+      isModalDosen3Visible: false,
+      isModalDosen4Visible: false,
       namaMatakuliah: "",
       countDosen: 1,
       groups: ["A", "B", "C", "D"],
@@ -146,6 +267,12 @@ export default {
   },
   async created() {
     await store.dispatch(KELAS_RESET_STATE);
+    this.kelas.namaMatakuliah = this.$route.params.detailKelas.namaMatakuliah;
+    this.kelas.group = this.$route.params.detailKelas.group;
+    this.kelas.semester = this.$route.params.detailKelas.semester;
+    this.kelas.tahunAjaran = this.$route.params.detailKelas.tahunAjaran;
+    this.kelas.sesi = this.$route.params.detailKelas.sesi;
+    this.kelas.hari = this.$route.params.detailKelas.hari;
   },
   methods: {
     setData() {
@@ -180,7 +307,66 @@ export default {
           this.errors = response.data.errors;
         });
     },
-    
+    showModalDaftarMakul() {
+      this.isModalMakulVisible = true;
+    },
+    closeModalDaftarMakul(selectedMakul) {
+      this.kelas.namaMatakuliah = "";
+      if (selectedMakul != null) {
+        this.kelas.namaMatakuliah = selectedMakul.namaMatakuliah;
+      }
+      this.isModalMakulVisible = false;
+    },
+    showModalDosen1() {
+      this.isModalDosen1Visible = true;
+    },
+    closeModalDosen1(selectedDosen) {
+      this.kelas.nik[0] = "";
+      if (selectedDosen != null) {
+        this.kelas.nik[0] = selectedDosen.nik;
+      }
+      this.isModalDosen1Visible = false;
+    },
+    showModalDosen2() {
+      this.isModalDosen2Visible = true;
+    },
+    closeModalDosen2(selectedDosen) {
+      this.kelas.nik[1] = "";
+      if (selectedDosen != null) {
+        this.kelas.nik[1] = selectedDosen.nik;
+      }
+      this.isModalDosen2Visible = false;
+    },
+    showModalDosen3() {
+      this.isModalDosen3Visible = true;
+    },
+    closeModalDosen3(selectedDosen) {
+      this.kelas.nik[2] = "";
+      if (selectedDosen != null) {
+        this.kelas.nik[2] = selectedDosen.nik;
+      }
+      this.isModalDosen3Visible = false;
+    },
+    showModalDosen4() {
+      this.isModalDosen4Visible = true;
+    },
+    closeModalDosen4(selectedDosen) {
+      this.kelas.nik[3] = "";
+      if (selectedDosen != null) {
+        this.kelas.nik[3] = selectedDosen.nik;
+      }
+      this.isModalDosen4Visible = false;
+    },
+    batalUpdate() {
+      this.$router.push({
+        name: "kelas"
+      });
+    },
+    batalCreate() {
+      this.$router.push({
+        name: "daftarkelas"
+      });
+    }
   },
 
   computed: {
