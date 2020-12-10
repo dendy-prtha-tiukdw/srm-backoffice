@@ -114,7 +114,9 @@ export default {
     namaMatakuliah: String,
     group: String,
     semester: String,
-    tahunAjaran: String
+    tahunAjaran: String,
+    sesi: String,
+    hari: String
   },
 
   components: { RwvRouteUpdate },
@@ -202,7 +204,9 @@ export default {
           group: this.detailKelas.group,
           namaMatakuliah: this.detailKelas.namaMatakuliah,
           semester: this.detailKelas.semester,
-          tahunAjaran: this.detailKelas.tahunAjaran
+          tahunAjaran: this.detailKelas.tahunAjaran,
+          sesi: this.detailKelas.sesi,
+          hari: this.detailKelas.hari
         }
       });
     },
