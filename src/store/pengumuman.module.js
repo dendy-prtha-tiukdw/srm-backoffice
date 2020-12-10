@@ -17,7 +17,7 @@ const initialState = {
     pengumuman: "",
     semester: "",
     tahunAjaran: "",
-    tanggalBerakhir: "",
+    tanggalBerakhir: ""
   },
   listPengumuman: {},
   errors: {}
@@ -100,11 +100,13 @@ export const mutations = {
   },
   [RESET_STATE]() {
     console.log("RESET_STATE");
-    state.pengumuman.group = "";
-    state.pengumuman.namaMatkul = "";
+    state.pengumuman.idPengumuman = "";
+    state.pengumuman.namaMatakuliah = "";
+    state.pengumuman.judulPengumuman = "";
     state.pengumuman.pengumuman = "";
     state.pengumuman.semester = "";
     state.pengumuman.tahunAjaran = "";
+    state.pengumuman.tanggalBerakhir = "";
   },
   [SET_LIST_PENGUMUMAN](state, data) {
     state.listPengumuman = data;

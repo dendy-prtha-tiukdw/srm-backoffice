@@ -1,31 +1,45 @@
 <template>
   <div class="col-md-9">
     <h2>Pilih Semester & Tahun Ajaran</h2>
-    <v-container fluid>
-      <div class="mb-n9">
-        <v-row>
-          <v-col cols="12" sm="1" md="2">
-            <v-text-field
-              label="Semester"
+    <div class="container">
+      <div class="row">
+        <div class="col-4 col-sm-4">
+          <div class="input-group">
+            <select
+              class="custom-select"
+              id="inputSemester"
+              aria-label="Example select with button addon"
+              placeholder="Semester"
               v-model="listKelas.semester"
-              solo
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" sm="3" md="2">
-            <v-text-field
-              label="Tahun Ajaran"
+            >
+              <option value="Gasal">Gasal</option>
+              <option value="Genap">Genap</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-4 col-sm-4">
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Tahun Ajaran"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
               v-model="listKelas.tahunAjaran"
-              solo
-            ></v-text-field>
-          </v-col>
-          <v-col>
-            <v-btn color="warning" @click="handleViewKelas" dark>
-              Submit
-            </v-btn>
-          </v-col>
-        </v-row>
+            />
+          </div>
+        </div>
+        <div class="col-2 col-sm-2">
+          <button
+            type="button"
+            class="btn btn-outline-success"
+            @click="handleViewKelas"
+          >
+            Submit
+          </button>
+        </div>
       </div>
-    </v-container>
+    </div>
     DAFTAR KELAS
     <table class="table">
       <thead>

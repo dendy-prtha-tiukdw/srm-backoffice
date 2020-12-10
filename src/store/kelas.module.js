@@ -216,7 +216,7 @@ const actions = {
         });
     });
   },
-  [PESERTA_KELAS_DELETE]({ commit }, dataHapus ) {
+  [PESERTA_KELAS_DELETE]({ commit }, dataHapus) {
     return new Promise(resolve => {
       KelasService.deletePesertaKelas(dataHapus)
         .then(({ data }) => {
@@ -281,32 +281,22 @@ const mutations = {
   },
   [SET_DETAIL_KELAS](state, detailKelas) {
     state.detailKelas = detailKelas.data;
-    // console.log("SET_DAFTAR_KELAS");
-    // console.log(state.detailKelas);
     state.errors = {};
   },
   [SET_PESERTA_KELAS](state, pesertaKelas) {
     state.pesertaKelas = pesertaKelas.data;
-    // console.log("SET_PESERTA_KELAS");
-    // console.log(state.pesertaKelas);
     state.errors = {};
   },
   [SET_DAFTAR_KELAS](state, daftarKelas) {
     state.daftarKelas = daftarKelas.data;
-    // console.log("SET_PESERTA_KELAS");
-    // console.log(state.pesertaKelas);
     state.errors = {};
   },
   [SET_LIST_MATAKULIAH](state, listMatakuliah) {
     state.listMatakuliah = listMatakuliah.data;
-    // console.log("SET_PESERTA_KELAS");
-    // console.log(state.pesertaKelas);
     state.errors = {};
   },
   [SET_LIST_DOSEN](state, listDosen) {
     state.listDosen = listDosen.data;
-    // console.log("SET_PESERTA_KELAS");
-    // console.log(state.pesertaKelas);
     state.errors = {};
   },
   [RESET_STATE]() {
@@ -319,24 +309,6 @@ const mutations = {
     state.kelas.hari = "";
     state.kelas.nik = [];
     state.kelas.sesi = "";
-    // state.errors = {};
-    // state.detailKelas = [];
-    // state.pesertaKelas = [];
-    // state.updateKelas.newData.group = ""
-    // state.updateKelas.newData.hari = ""
-    // state.updateKelas.newData.namaMatakuliah = ""
-    // state.updateKelas.newData.nik = [""]
-    // state.updateKelas.newData.semester = ""
-    // state.updateKelas.newData.sesi = ""
-    // state.updateKelas.newData.tahunAjaran = ""
-    // state.updateKelas.request.group = ""
-    // state.updateKelas.request.namaMatakuliah = ""
-    // state.updateKelas.request.semester = ""
-    // state.updateKelas.request.tahunAjaran = ""
-    // state.matakuliah.prodi = "Informatika"
-    // state.listMatakuliah = {}
-    // state.dosen.prodi = "Informatika"
-    // state.listDosen = {}
   }
 };
 

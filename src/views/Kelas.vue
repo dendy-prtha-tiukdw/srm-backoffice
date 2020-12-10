@@ -114,13 +114,14 @@ export default {
     namaMatakuliah: String,
     group: String,
     semester: String,
-    tahunAjaran: String
+    tahunAjaran: String,
+    sesi: String,
+    hari: String
   },
 
   components: { RwvRouteUpdate },
   created() {},
   beforeRouteEnter(to, from, next) {
-    //console.log("before route on kelas ");
     let detailKelasRequest = {
       group: to.params.group,
       namaMatakuliah: to.params.namaMatakuliah,
@@ -135,8 +136,6 @@ export default {
     ]).then(() => {
       next();
     });
-    // console.log(to.params.namaMatakuliah);
-    // console.log("to.params.namaMatakuliah");
     next();
   },
   computed: {
@@ -202,7 +201,9 @@ export default {
           group: this.detailKelas.group,
           namaMatakuliah: this.detailKelas.namaMatakuliah,
           semester: this.detailKelas.semester,
-          tahunAjaran: this.detailKelas.tahunAjaran
+          tahunAjaran: this.detailKelas.tahunAjaran,
+          sesi: this.detailKelas.sesi,
+          hari: this.detailKelas.hari
         }
       });
     },
@@ -227,17 +228,17 @@ export default {
       };
       console.log(pesertaRequest);
       let detailKelasRequest = {
-      group: this.$route.params.group,
-      namaMatakuliah: this.$route.params.namaMatakuliah,
-      semester: this.$route.params.semester,
-      tahunAjaran: this.$route.params.tahunAjaran,
-    };
+        group: this.$route.params.group,
+        namaMatakuliah: this.$route.params.namaMatakuliah,
+        semester: this.$route.params.semester,
+        tahunAjaran: this.$route.params.tahunAjaran
+      };
       this.$store
         .dispatch(PESERTA_KELAS_DELETE, pesertaRequest)
         .then(() => {
-            //pProup, pNamaMatakuliah, pSemester, pTahunAjaran
-            store.dispatch(FETCH_DETAIL_KELAS, detailKelasRequest),
-            store.dispatch(FETCH_PESERTA_KELAS, detailKelasRequest)
+          //pProup, pNamaMatakuliah, pSemester, pTahunAjaran
+          store.dispatch(FETCH_DETAIL_KELAS, detailKelasRequest),
+            store.dispatch(FETCH_PESERTA_KELAS, detailKelasRequest);
         })
         .catch(({ response }) => {
           this.errors = response.data.errors;
