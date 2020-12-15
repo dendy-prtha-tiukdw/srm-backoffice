@@ -1,53 +1,49 @@
 <template>
-  <v-app>
-    <div class="col-md-9">
-      <fieldset>
-        <v-container fluid>
-          <v-col><h1>SIGN UP</h1></v-col>
-          <!-- Hari Matakuliah -->
-          <v-col cols="4">
-            <div class="mb-n9">
-              <v-text-field 
-                label="Masukan Email" 
-                v-model="signup.email" 
-                filled
-              >
-              </v-text-field>
-            </div>
-          </v-col>
-          <!-- Group Kelas -->
-          <v-col cols="4">
-            <div class="mb-n9">
-              <v-text-field
-                label="Masukan Nomor Induk"
-                v-model="signup.nomorInduk"
-                filled
-              >
-              </v-text-field>
-            </div>
-          </v-col>
-          <!-- Role Akun -->
-          <v-col cols="4">
-            <div class="sesi mb-n9">
-              <v-combobox
-                v-model="signup.role"
-                :items="role"
-                clearable
-                filled
-                label="Pilih Role Akun"
-              ></v-combobox>
-            </div>
-          </v-col>
-          <v-col>
-            <v-btn color="success" @click="handleSignUp" dark>
-              Sign Up
-            </v-btn>
-          </v-col>
-        </v-container>
-        &nbsp;&nbsp;&nbsp;
-      </fieldset>
+  <div class="signup">
+    <div class="container page">
+      <div class="row" style="margin-top: 200px">
+        <div class="col-md-6" style="margin-left: 37%">
+          <h1>SRM BackOffice</h1>
+        </div>
+        <div class="col-md-6 offset-md-3 col-xs-12">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Email"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+            v-model="signup.email"
+          />
+        </div>
+        <div class="col-md-6 offset-md-3 col-xs-12">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nomor Induk"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+            v-model="signup.nomorInduk"
+          />
+        </div>
+          <div class="col-md-6 offset-md-3 col-xs-12">
+            <select class="custom-select col-12 w-100" v-model="signup.role">
+              <option value="ROLE_DOSEN">ROLE_DOSEN</option>
+              <option value="ROLE_MAHASISWA">ROLE_MAHASISWA</option>
+              <option value="ROLE_STAFF">ROLE_STAFF</option>
+            </select>
+          </div>
+        <div class="col-md-6 offset-md-3 col-xs-12">
+          <button
+            class="btn btn-block btn-lg btn-primary pull-xs-center"
+            @click="handleSignUp"
+          >
+            Sign Up
+          </button>
+        </div>
+      </div>
+      <div></div>
     </div>
-  </v-app>
+  </div>
 </template>
 
 <script>
