@@ -20,7 +20,7 @@
           <td>{{ pengumuman.judulPengumuman }}</td>
           <td>{{ pengumuman.tanggalInput }}</td>
           <RwvRouteTableItem
-            :routeName="'editpengumuman'"
+            :routeName="'editpengumumankelas'"
             :data="{
               isUpdating: true,
               pengumuman: pengumuman
@@ -46,7 +46,7 @@ import { mapGetters, mapState } from "vuex";
 /* eslint-disable no-console */
 
 export default {
-  name: "daftarPengumuman",
+  name: "daftarpengumumankelas",
   data() {
     return {
       group: "",
@@ -75,7 +75,7 @@ export default {
   methods: {
     handleClickTambahPengumuman() {
       this.$router.push({
-        name: "editpengumuman",
+        name: "editpengumumankelas",
         params: {
           isUpdating: false,
           pengumuman: {

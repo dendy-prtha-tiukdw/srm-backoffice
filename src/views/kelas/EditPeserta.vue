@@ -26,7 +26,7 @@ import store from "@/store";
 /* eslint-disable no-console */
 
 export default {
-  name: "editpeserta",
+  name: "editpesertakelas",
   components: {},
   data() {
     return {

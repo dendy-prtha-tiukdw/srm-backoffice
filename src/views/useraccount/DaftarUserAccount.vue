@@ -96,7 +96,7 @@ export default {
   methods: {
     handleClickTambahKelas() {
       this.$router.push({
-        name: "editkelas",
+        name: "useraccount",
         params: {
           isUpdating: false,
           kelas: {

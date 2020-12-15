@@ -21,7 +21,7 @@
           <td>{{ kegiatan.tanggalBerakhir }}</td>
           <td>{{ kegiatan.isComplete }}</td>
           <RwvRouteTableItem
-            :routeName="'editkegiatan'"
+            :routeName="'editkegiatankelas'"
             :data="{
               isUpdating: true,
               kegiatan: kegiatan
@@ -76,7 +76,7 @@ export default {
   methods: {
     handleClickTambahKegiatan() {
       this.$router.push({
-        name: "editkegiatan",
+        name: "editkegiatankelas",
         params: {
           isUpdating: false,
           kegiatan: {

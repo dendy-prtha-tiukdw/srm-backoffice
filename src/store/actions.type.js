@@ -1,6 +1,6 @@
 export const CHECK_AUTH = "checkAuth";
 
-/*Auth state*/
+/*Kelas state*/
 export const FETCH_DAFTAR_KELAS = "fetchDaftarKelas";
 export const FETCH_DETAIL_KELAS = "fetchDetailKelas";
 export const FETCH_PESERTA_KELAS = "fetchPesertaKelas";

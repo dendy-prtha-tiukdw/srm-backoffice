@@ -55,8 +55,8 @@ import datetime from "vuejs-datetimepicker";
 /* eslint-disable no-console */
 
 export default {
-  name: "editpengumuman",
-  components:{
+  name: "editpengumumankelas",
+  components: {
     datetime
   },
   data() {
@@ -92,7 +92,7 @@ export default {
         .then(({ data }) => {
           console.log(data);
           this.$router.push({
-            name: "daftarpengumuman",
+            name: "daftarpengumumankelas",
             params: {
               group: this.pengumuman.group,
               namaMatakuliah: this.pengumuman.namaMatakuliah,
@@ -111,7 +111,7 @@ export default {
         .then(({ data }) => {
           console.log(data);
           this.$router.push({
-            name: "daftarpengumuman",
+            name: "daftarpengumumankelas",
             params: {
               group: this.pengumuman.group,
               namaMatakuliah: this.pengumuman.namaMatakuliah,

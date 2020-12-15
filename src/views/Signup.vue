@@ -25,13 +25,13 @@
             v-model="signup.nomorInduk"
           />
         </div>
-          <div class="col-md-6 offset-md-3 col-xs-12">
-            <select class="custom-select col-12 w-100" v-model="signup.role">
-              <option value="ROLE_DOSEN">ROLE_DOSEN</option>
-              <option value="ROLE_MAHASISWA">ROLE_MAHASISWA</option>
-              <option value="ROLE_STAFF">ROLE_STAFF</option>
-            </select>
-          </div>
+        <div class="col-md-6 offset-md-3 col-xs-12">
+          <select class="custom-select col-12 w-100" v-model="signup.role">
+            <option value="ROLE_DOSEN">ROLE_DOSEN</option>
+            <option value="ROLE_MAHASISWA">ROLE_MAHASISWA</option>
+            <option value="ROLE_STAFF">ROLE_STAFF</option>
+          </select>
+        </div>
         <div class="col-md-6 offset-md-3 col-xs-12">
           <button
             class="btn btn-block btn-lg btn-primary pull-xs-center"
@@ -54,7 +54,7 @@ import { mapGetters } from "vuex";
 /* eslint-disable no-console */
 
 export default {
-  name: "editpengumuman",
+  name: "registeruser",
   data() {
     return {
       role: ["ROLE_DOSEN", "ROLE_STAFF", "ROLE_MAHASISWA"],
