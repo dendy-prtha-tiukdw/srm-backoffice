@@ -18,7 +18,8 @@ const initialState = {
     semester: "",
     tahunAjaran: "",
     isComplete: "",
-    tanggalBerakhir: "",
+    tanggalDibuat: "",
+    tanggalBerakhir: ""
   },
   listKegiatan: {},
   errors: {}
@@ -101,11 +102,16 @@ export const mutations = {
   },
   [RESET_STATE]() {
     // console.log("RESET_STATE");
+    state.kegiatan.idKegiatan = "";
     state.kegiatan.group = "";
-    state.kegiatan.namaMatkul = "";
-    state.kegiatan.pengumuman = "";
+    state.kegiatan.namaMatakuliah = "";
+    state.kegiatan.judulKegiatan = "";
+    state.kegiatan.kegiatan = "";
     state.kegiatan.semester = "";
     state.kegiatan.tahunAjaran = "";
+    state.kegiatan.isComplete = "";
+    state.kegiatan.tanggalDibuat = "";
+    state.kegiatan.tanggalBerakhir = "";
   },
   [SET_LIST_KEGIATAN](state, data) {
     state.listKegiatan = data;

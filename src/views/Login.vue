@@ -1,18 +1,22 @@
 <template>
   <div class="auth-page">
     <div class="container page">
-      <div class="row">
+      <div class="row" style="margin-top: 200px">
+        <div class="col-md-6" style="margin-left: 37%">
+          <h1>SRM BackOffice</h1>
+        </div>
         <div class="col-md-6 offset-md-3 col-xs-12">
-          <h1 class="text-xs-center">Sign in</h1>
           <button
-            class="btn btn-lg btn-primary pull-xs-center"
+            class="btn btn-block btn-lg btn-primary pull-xs-center"
             @click="handleClickLogin"
             :disabled="!gAuthReady"
           >
             Sign in Using Google
           </button>
+        </div>
+        <div class="col-md-6 offset-md-3 col-xs-12">
           <button
-            class="btn btn-lg btn-primary pull-xs-center"
+            class="btn btn-block btn-lg btn-primary pull-xs-center"
             @click="handleSignup"
           >
             Sign Up

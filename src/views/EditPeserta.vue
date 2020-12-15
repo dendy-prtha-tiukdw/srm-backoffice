@@ -70,25 +70,6 @@ export default {
           this.errors = response.data.errors;
         });
     }
-    // onHapusPengumuman() {
-    //   this.$store
-    //     .dispatch(PENGUMUMAN_DELETE)
-    //     .then(({ data }) => {
-    //       console.log(data);
-    //       this.$router.push({
-    //         name: "daftarpengumuman",
-    //         params: {
-    //           group: this.pengumuman.group,
-    //           namaMatakuliah: this.pengumuman.namaMatakuliah,
-    //           semester: this.pengumuman.semester,
-    //           tahunAjaran: this.pengumuman.tahunAjaran
-    //         }
-    //       });
-    //     })
-    //     .catch(({ response }) => {
-    //       this.errors = response.data.errors;
-    //     });
-    // }
   },
 
   computed: {
