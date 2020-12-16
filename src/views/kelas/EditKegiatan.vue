@@ -71,7 +71,7 @@ import datetime from "vuejs-datetimepicker";
 /* eslint-disable no-console */
 
 export default {
-  name: "editkegiatan",
+  name: "editkegiatankelas",
   components: {
     datetime
   },

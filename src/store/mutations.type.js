@@ -21,3 +21,5 @@ export const SET_LIST_KEGIATAN = "setListKegiatan";
 export const SET_LIST_MATAKULIAH = "setListMatakuliah";
 
 export const SET_LIST_DOSEN = "setListDosen";
+
+export const SET_LIST_USER_ACCOUNT = "setListUserAccount";

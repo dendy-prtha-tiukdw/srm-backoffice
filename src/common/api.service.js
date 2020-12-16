@@ -105,14 +105,24 @@ export default ApiService;
 export const UserService = {
   getUserProfile(profileRequest) {
     return ApiService.securedPost("user/profile", profileRequest);
-  },
+  }
 };
 
-export const AuthService = {
-  signUp(signupRequest) {
+export const UserAccountService = {
+  create(signupRequest) {
     return ApiService.securedPost("auth/signup", signupRequest);
   },
-}
+  update(updateRequest) {
+    return ApiService.securedPost("user/update", updateRequest);
+  },
+  delete(deleteRequest) {
+    return ApiService.securedPost("user/delete", deleteRequest);
+  },
+  //todo: URI will change
+  getDaftarUserAccount() {
+    return ApiService.securedGet("user/all");
+  }
+};
 
 export const KelasService = {
   create(kelasRequest) {

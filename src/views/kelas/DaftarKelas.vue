@@ -58,7 +58,7 @@
           <td>{{ kelas.hari }}</td>
           <td>{{ kelas.sesi }}</td>
           <RwvRouteTableItem
-            :routeName="'kelas'"
+            :routeName="'detailkelas'"
             :data="{
               namaMatakuliah: kelas.namaMatakuliah,
               group: kelas.group,

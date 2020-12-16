@@ -231,8 +231,8 @@ import {
 } from "@/store/actions.type";
 import { mapGetters } from "vuex";
 import store from "@/store";
-import DialogMatakuliah from "../components/DialogMatakuliah.vue";
-import DialogDosen from "../components/DialogDosen.vue";
+import DialogMatakuliah from "@/components/DialogMatakuliah.vue";
+import DialogDosen from "@/components/DialogDosen.vue";
 /* eslint-disable no-console */
 
 export default {
@@ -360,7 +360,6 @@ export default {
     batalUpdate() {
       this.$router.push({
         name: "kelas"
-          
       });
     },
     batalCreate() {

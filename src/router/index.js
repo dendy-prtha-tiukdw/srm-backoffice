@@ -13,9 +13,10 @@ export default new Router({
       component: () => import("@/views/Login")
     },
     {
-      path: "/signup",
-      name: "signup",
-      component: () => import("@/views/Signup")
+      path: "/useraccount/signup",
+      name: "edituseraccount",
+      props: true,
+      component: () => import("@/views/useraccount/EditUserAccount")
     },
     {
       path: "/home",
@@ -25,54 +26,54 @@ export default new Router({
     {
       path: "/daftarkelas",
       name: "daftarkelas",
-      component: () => import("@/views/DaftarKelas")
+      component: () => import("@/views/kelas/DaftarKelas")
     },
     {
-      path: "/kelas",
-      name: "kelas",
-      component: () => import("@/views/Kelas"),
+      path: "/kelas/detailkelas",
+      name: "detailkelas",
+      component: () => import("@/views/kelas/DetailKelas"),
       props: true
     },
     {
-      path: "/editkelas",
+      path: "/kelas/editkelas",
       name: "editkelas",
       props: true,
-      component: () => import("@/views/EditKelas")
+      component: () => import("@/views/kelas/EditKelas")
     },
     {
-      path: "/about",
-      name: "about",
-      component: () => import("@/views/About")
-    },
-    {
-      path: "/daftarpengumuman",
-      name: "daftarpengumuman",
+      path: "/kelas/daftarpengumuman",
+      name: "daftarpengumumankelas",
       props: true,
-      component: () => import("@/views/DaftarPengumuman")
+      component: () => import("@/views/kelas/DaftarPengumuman")
     },
     {
-      path: "/editpengumuman",
-      name: "editpengumuman",
+      path: "/kelas/editpengumuman",
+      name: "editpengumumankelas",
       props: true,
-      component: () => import("@/views/EditPengumuman")
+      component: () => import("@/views/kelas/EditPengumuman")
     },
     {
-      path: "/daftarkegiatan",
+      path: "/kelas/daftarkegiatan",
       name: "daftarkegiatan",
       props: true,
-      component: () => import("@/views/DaftarKegiatan")
+      component: () => import("@/views/kelas/DaftarKegiatan")
     },
     {
-      path: "/editkegiatan",
-      name: "editkegiatan",
+      path: "/kelas/editkegiatan",
+      name: "editkegiatankelas",
       props: true,
-      component: () => import("@/views/EditKegiatan")
+      component: () => import("@/views/kelas/EditKegiatan")
     },
     {
-      path: "/editpeserta",
-      name: "editpeserta",
+      path: "/kelas/editpeserta",
+      name: "editpesertakelas",
       props: true,
-      component: () => import("@/views/EditPeserta")
+      component: () => import("@/views/kelas/EditPeserta")
+    },
+    {
+      path: "/daftaruseraccount",
+      name: "daftaruseraccount",
+      component: () => import("@/views/useraccount/DaftarUserAccount")
     },
     {
       path: "/profile",

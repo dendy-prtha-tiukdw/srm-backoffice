@@ -109,7 +109,7 @@ import {
 import RwvRouteUpdate from "@/components/RouteUpdate";
 
 export default {
-  name: "kelas",
+  name: "detailkelas",
   props: {
     namaMatakuliah: String,
     group: String,
@@ -122,21 +122,24 @@ export default {
   components: { RwvRouteUpdate },
   created() {},
   beforeRouteEnter(to, from, next) {
-    let detailKelasRequest = {
-      group: to.params.group,
-      namaMatakuliah: to.params.namaMatakuliah,
-      semester: to.params.semester,
-      tahunAjaran: to.params.tahunAjaran
-    };
-
-    Promise.all([
-      //pProup, pNamaMatakuliah, pSemester, pTahunAjaran
-      store.dispatch(FETCH_DETAIL_KELAS, detailKelasRequest),
-      store.dispatch(FETCH_PESERTA_KELAS, detailKelasRequest)
-    ]).then(() => {
+    if (Object.keys(to.params).length > 0) {
+      console.log(to);
+      let detailKelasRequest = {
+        group: to.params.group,
+        namaMatakuliah: to.params.namaMatakuliah,
+        semester: to.params.semester,
+        tahunAjaran: to.params.tahunAjaran
+      };
+      Promise.all([
+        //pProup, pNamaMatakuliah, pSemester, pTahunAjaran
+        store.dispatch(FETCH_DETAIL_KELAS, detailKelasRequest),
+        store.dispatch(FETCH_PESERTA_KELAS, detailKelasRequest)
+      ]).then(() => {
+        next();
+      });
+    } else {
       next();
-    });
-    next();
+    }
   },
   computed: {
     ...mapGetters([
@@ -154,7 +157,7 @@ export default {
     },
     handleClickListPengumuman() {
       this.$router.push({
-        name: "daftarpengumuman",
+        name: "daftarpengumumankelas",
         params: {
           group: this.detailKelas.group,
           namaMatakuliah: this.detailKelas.namaMatakuliah,
@@ -210,7 +213,7 @@ export default {
     onCreatePeserta() {
       this.$router.push({
         isUpdating: true,
-        name: "editpeserta",
+        name: "editpesertakelas",
         params: {
           group: this.detailKelas.group,
           namaMatakuliah: this.detailKelas.namaMatakuliah,
