@@ -8,6 +8,7 @@ import user from "./user.module";
 import kelas from "./kelas.module";
 import pengumuman from "./pengumuman.module";
 import kegiatan from "./kegiatan.module";
+import useraccount from "./useraccount.module";
 
 Vue.use(Vuex);
 
@@ -18,8 +19,7 @@ export default new Vuex.Store({
     user,
     kelas,
     pengumuman,
-    kegiatan
-    //article,
-    //profile
+    kegiatan,
+    useraccount
   }
 });

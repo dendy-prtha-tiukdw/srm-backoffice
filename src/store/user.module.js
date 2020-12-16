@@ -24,16 +24,8 @@ const actions = {
       return UserService.getUserProfile(idToken).then(({ data }) => {
         console.log(data, "Return Data");
         console.log(data.data);
-        // if (
-        //   data.data.role == "ROLE_DOSEN" ||
-        //   data.data.role == "ROLE_STAFF"
-        // ) {
         context.commit(SET_PROFILE, data);
         resolve(data);
-        // } else {
-        //   console.log("role unauthorize");
-        //   context.commit(SET_ERROR, "role unauthorize");
-        // }
       });
     });
   }

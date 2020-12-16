@@ -41,7 +41,13 @@ export const REGISTER = "register";
 export const UPDATE_USER = "updateUser";
 export const TOGGLE_NAVBAR = "toggleNavbar";
 export const DAFTAR_KELAS = "daftarKelas";
-export const SIGN_UP = "signup";
 
 /*Profile state*/
 export const FETCH_PROFILE = "profile";
+
+/*User account state*/
+export const FETCH_DAFTAR_USERACCOUNT = "fetchdaftaruseraccount";
+export const USERACCOUNT_RESET_STATE = "useraccountresetstate";
+export const USERACCOUNT_CREATE = "createuseraccount";
+export const USERACCOUNT_UPDATE = "updateuseraccount";
+export const USERACCOUNT_DELETE = "deleteuseraccount";

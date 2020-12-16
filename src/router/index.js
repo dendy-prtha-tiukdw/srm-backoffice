@@ -13,9 +13,10 @@ export default new Router({
       component: () => import("@/views/Login")
     },
     {
-      path: "/signup",
-      name: "signup",
-      component: () => import("@/views/Signup")
+      path: "/useraccount/signup",
+      name: "edituseraccount",
+      props: true,
+      component: () => import("@/views/useraccount/EditUserAccount")
     },
     {
       path: "/home",
@@ -38,11 +39,6 @@ export default new Router({
       name: "editkelas",
       props: true,
       component: () => import("@/views/kelas/EditKelas")
-    },
-    {
-      path: "/about",
-      name: "about",
-      component: () => import("@/views/About")
     },
     {
       path: "/kelas/daftarpengumuman",
@@ -73,6 +69,11 @@ export default new Router({
       name: "editpesertakelas",
       props: true,
       component: () => import("@/views/kelas/EditPeserta")
+    },
+    {
+      path: "/daftaruseraccount",
+      name: "daftaruseraccount",
+      component: () => import("@/views/useraccount/DaftarUserAccount")
     },
     {
       path: "/profile",
